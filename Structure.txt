@@ -1,0 +1,6 @@
+Classes:
+	Wonderland (Main)
+	Location
+	Character
+	Item
+	Actions
