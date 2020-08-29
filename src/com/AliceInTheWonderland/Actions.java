@@ -64,7 +64,6 @@ public class Actions {
         Control.DisplayCollectibleItems(location, 0, "");
         Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
 
-
     }
 
     public static void DrinkInLongHall() {

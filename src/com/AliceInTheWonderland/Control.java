@@ -113,33 +113,33 @@ public class Control {
         }
     }
 
-    public static void GoToLocation(CardinalPoint location) {
-        switch (location) {
-            case North:
+    public static void GoToLocation(Location location) {
+        switch (location.id) {
+            case 1:
                 Actions.LongHall();
                 break;
-            case Northeast:
+            case 2:
                 Actions.Garden();
                 break;
-            case East:
+            case 3:
                 Actions.Courtroom();
                 break;
-            case Southeast:
+            case 4:
                 Actions.MarchHaresHouse();
                 break;
-            case South:
+            case 5:
                 Actions.DuchessHouse();
                 break;
-            case Southwest:
+            case 6:
                 Actions.CroquetPlayground();
                 break;
-            case West:
+            case 7:
                 Actions.RabbitsHouse();
                 break;
-            case Northwest:
+            case 8:
                 Actions.Shores();
                 break;
-            case Central:
+            case 9:
                 Actions.SafeRoom();
                 break;
         }
