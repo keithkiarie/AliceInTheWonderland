@@ -3,17 +3,23 @@ package com.AliceInTheWonderland;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.json.*;
 
 enum CardinalPoint {
-    North, Northeast, East, Southeast, South, Southwest, West, Northwest, Central
+    North, Northeast, East, Southeast, South, Southwest, West, Northwest, Central, Up
 }
 
 public class Location {
     public CardinalPoint CardinalLocation;
     public String Name;
-    public String FirstVisitText;
-    public String SubsequentVisitText;
+    public ArrayList<String> Texts = new ArrayList<String>();
+    public ArrayList<Item> Items = new ArrayList<Item>();
+    public boolean Visited = false;
+
+    public static Location DeepWell, LongHall, Garden, Courtroom, MarchHaresHouse, DuchessHouse,
+            CroquetPlayground, RabbitsHouse, Shores, SafeRoom;
 
     Location(String FileUrl){
         try {
@@ -24,37 +30,7 @@ public class Location {
         }
     }
 
-    private void GetFileData(String FileUrl) throws IOException {
-        String FileContents = "";
 
-
-        try {
-            FileReader fr = new FileReader(FileUrl);
-            int i;
-            while((i=fr.read())!=-1)
-                FileContents += (char)i;
-            fr.close();
-        } catch(IOException e) {
-            throw e;
-        }
-
-
-
-
-        JSONObject LocObj = new JSONObject(FileContents);
-
-        // getting Location name
-        String Name = (String) LocObj.get("Name");
-        String FirstVisitText = (String) LocObj.get("FirstVisitText");
-        String SubsequentVisitText = (String) LocObj.get("SubsequentVisitText");
-
-
-        this.Name = Name;
-        this.CardinalLocation = CardinalLocation;
-        this.FirstVisitText = FirstVisitText;
-        this.SubsequentVisitText = SubsequentVisitText;
-        this.CardinalLocation = TextToCardinalPoint((String) LocObj.get("CardinalLocation"));
-    }
 
     public static CardinalPoint TextToCardinalPoint(String cardinalPoint) {
 
@@ -68,8 +44,34 @@ public class Location {
             case "West": return CardinalPoint.West;
             case "Northwest": return CardinalPoint.Northwest;
             case "Central": return CardinalPoint.Central;
+            case "Up": return CardinalPoint.Up;
         }
 
         throw new IllegalArgumentException();
+    }
+
+    private void GetFileData(String FileUrl) throws IOException {
+        String FileContents = "";
+
+        try {
+            FileReader fr = new FileReader(FileUrl);
+            int i;
+            while((i=fr.read())!=-1)
+                FileContents += (char)i;
+            fr.close();
+        } catch(IOException e) {
+            throw e;
+        }
+
+
+        JSONObject LocObj = new JSONObject(FileContents);
+
+
+        this.Name = (String) LocObj.get("Name");
+        this.CardinalLocation = TextToCardinalPoint((String) LocObj.get("CardinalLocation"));
+
+        for (Object i: (JSONArray)LocObj.get("Texts")) {
+            this.Texts.add((String) i);
+        }
     }
 }
