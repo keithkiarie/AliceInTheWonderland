@@ -19,7 +19,7 @@ public class Location {
         try {
             this.GetFileData(FileUrl);
         } catch (IOException e) {
-            System.out.println("Location file missing or contains invalid data.");
+            System.out.println("Location file missing or contains invalid data. " + FileUrl);
             e.printStackTrace();
         }
     }

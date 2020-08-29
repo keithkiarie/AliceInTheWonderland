@@ -1,0 +1,6 @@
+{
+    "Name": "Safe Room",
+    "CardinalLocation": "Central",
+    "FirstVisitText": "This is the Safe Room. You can store your items here..",
+    "SubsequentVisitText": "You are back in the Safe Room"
+}

@@ -33,6 +33,6 @@ public class Wonderland {
         Locations.put("CroquetPlayground", new Location("Locations/CroquetPlayground.json"));
         Locations.put("RabbitsHouse", new Location("Locations/RabbitsHouse.json"));
         Locations.put("Shores", new Location("Locations/Shores.json"));
-        Locations.put("Central", new Location("Locations/Central.json"));
+        Locations.put("SafeRoom", new Location("Locations/SafeRoom.json"));
     }
 }
