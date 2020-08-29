@@ -30,6 +30,16 @@ public class Control {
 
     }
 
+    public static void ShowCollectedItems() {
+        if (Inventory.Count() == 0) System.out.println("0 collected items");
+        else {
+            System.out.println("Collected items:");
+            for (Item i:Inventory.MyInventory()) {
+                System.out.println("\t" + i.Name);
+            }
+        }
+    }
+
     public static void GoToLocation(CardinalPoint location) {
         switch (location) {
             case North:
@@ -61,4 +71,5 @@ public class Control {
                 break;
         }
     }
+
 }
