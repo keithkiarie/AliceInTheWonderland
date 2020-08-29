@@ -19,6 +19,7 @@ public class Wonderland {
     public static Plot GamePlot;
     public static boolean CriedAtLongHall = false;
     public static boolean PaidTheRabbit = false;
+    public static boolean PaidTheMarchHare = false;
     public static boolean TimeIsTakenBack = false;
 
     public static ArrayList<String>IntroductionTexts = new ArrayList<String>();
