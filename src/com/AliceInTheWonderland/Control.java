@@ -4,11 +4,17 @@ package com.AliceInTheWonderland;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+enum PossibleActions {
+    AllowChangeOfLocation,
+    CollectItem,
+    GiveItem
+}
+
 public class Control {
 
     // called from a location (in Actions). Takes in a list of items available in that room
-    public static void GetUserInput(Location location, boolean AllowChangeOfLocation) {
-
+    public static void GetUserInput(Location location, PossibleActions possibleActions) {
+        
     }
 
     public static void DisplayCollectibleItems(Location location, int index, String Text) {
@@ -41,6 +47,7 @@ public class Control {
 
     }
 
+    //public static void GiveItem(Item item,)
     public static void CollectItem(Item item) {
         if (Inventory.AddItem(item)) System.out.println(item.Name + " collected. You now have " + Inventory.Count() + " items");
         else System.out.println("Could not collect item");
@@ -108,7 +115,7 @@ public class Control {
     }
 
     public static void PrintDelayedTexts(ArrayList<String> Texts) {
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         for (String Text: Texts) {
             System.out.println(Text);
