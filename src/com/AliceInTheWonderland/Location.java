@@ -15,6 +15,7 @@ enum CardinalPoint {
 public class Location {
     public CardinalPoint CardinalLocation;
     public String Name;
+    public int id;
     public ArrayList<String> Texts = new ArrayList<String>();
     public ArrayList<Item> Items = new ArrayList<Item>();
     public boolean Visited = false;
@@ -25,9 +26,8 @@ public class Location {
     public HashMap<CardinalPoint, Location> Entries = new HashMap<CardinalPoint, Location>();
     public HashMap<CardinalPoint, Location> Exits = new HashMap<CardinalPoint, Location>();
 
-    public
-
-    Location(String FileUrl) {
+    public Location(String FileUrl, int id) {
+        this.id = id;
         try {
             this.GetFileData(FileUrl);
         } catch (IOException e) {
@@ -42,21 +42,20 @@ public class Location {
 
     static void ConstructLocations() {
 
-        Location.DeepWell = new Location("Locations/DeepWell.json");
-        Location.LongHall = new Location("Locations/LongHall.json");
-        Location.Garden = new Location("Locations/Garden.json");
-        Location.Courtroom = new Location("Locations/Courtroom.json");
-        Location.MarchHaresHouse = new Location("Locations/MarchHaresHouse.json");
-        Location.DuchessHouse = new Location("Locations/DuchessHouse.json");
-        Location.CroquetPlayground = new Location("Locations/CroquetPlayground.json");
-        Location.RabbitsHouse = new Location("Locations/RabbitsHouse.json");
-        Location.Shores = new Location("Locations/Shores.json");
-        Location.SafeRoom = new Location("Locations/SafeRoom.json");
+        Location.DeepWell = new Location("Locations/DeepWell.json", 0);
+        Location.LongHall = new Location("Locations/LongHall.json", 1);
+        Location.Garden = new Location("Locations/Garden.json", 2);
+        Location.Courtroom = new Location("Locations/Courtroom.json", 3);
+        Location.MarchHaresHouse = new Location("Locations/MarchHaresHouse.json", 4);
+        Location.DuchessHouse = new Location("Locations/DuchessHouse.json", 5);
+        Location.CroquetPlayground = new Location("Locations/CroquetPlayground.json", 6);
+        Location.RabbitsHouse = new Location("Locations/RabbitsHouse.json", 7);
+        Location.Shores = new Location("Locations/Shores.json", 8);
+        Location.SafeRoom = new Location("Locations/SafeRoom.json", 9);
 
 
         // Entries and Exits
         Location.DeepWell.Exits.put(CardinalPoint.Up,Location.LongHall);
-
         Location.LongHall.Entries.put(CardinalPoint.South, Location.SafeRoom);
         Location.LongHall.Exits.put(CardinalPoint.West, Location.Shores);
         Location.LongHall.Exits.put(CardinalPoint.East, Location.Garden);
