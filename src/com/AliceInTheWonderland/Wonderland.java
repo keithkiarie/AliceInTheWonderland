@@ -4,6 +4,7 @@ public class Wonderland {
 
     public static void main(String[] args) {
 	    PostWelcomeMessage();
+	    Location LongHall = new Location("Locations/LongHall.json");
     }
 
     static void PostWelcomeMessage() {

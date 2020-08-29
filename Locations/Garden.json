@@ -1,0 +1,6 @@
+{
+    "Name": "Garden",
+    "CardinalLocation": "Northeast",
+    "FirstVisitText": "What a beautiful garden.",
+    "SubsequentVisitText": "You are back in the Garden"
+}

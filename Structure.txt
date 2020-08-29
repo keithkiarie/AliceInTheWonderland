@@ -11,3 +11,4 @@ Classes:
 	Actions
 	Inventory => Items in possession
 	Control => Reads user input and checks the input against valid Actions
+	
