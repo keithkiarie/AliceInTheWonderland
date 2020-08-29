@@ -1,6 +1,7 @@
 package com.AliceInTheWonderland;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Control {
@@ -93,6 +94,17 @@ public class Control {
             case Central:
                 Actions.SafeRoom();
                 break;
+        }
+    }
+
+    public static void PrintDelayedTexts(ArrayList<String> Texts) {
+        for (String Text: Texts) {
+            System.out.println(Text);
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

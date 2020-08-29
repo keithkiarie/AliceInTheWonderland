@@ -1,5 +1,12 @@
 package com.AliceInTheWonderland;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.awt.*;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // Plot is influenced by who is met first between the Gardeners and the Rabbit, determining who will help you
@@ -11,9 +18,10 @@ public class Wonderland {
 
     public static Plot GamePlot;
     public static boolean CriedAtLongHall = false;
-    public static boolean PaidRabbit = false;
+    public static boolean PaidTheRabbit = false;
     public static boolean TimeIsTakenBack = false;
 
+    public ArrayList<String>IntroductionTexts = new ArrayList<String>();
 
     public static Location CurrentLocation;
 
@@ -24,14 +32,14 @@ public class Wonderland {
     }
 
     Wonderland() {
-        PostWelcomeMessage();
         ConstructLocations();
+        ReadMetaTexts();
+
+        PostWelcomeMessage();
     }
 
     void PostWelcomeMessage() {
-        System.out.println("\n");
-        System.out.println("Welcome to Wonderland!");
-        System.out.println("\n");
+        Control.PrintDelayedTexts(this.IntroductionTexts);
     }
 
     void ConstructLocations() {
@@ -46,5 +54,27 @@ public class Wonderland {
         Location.RabbitsHouse = new Location("Locations/RabbitsHouse.json");
         Location.Shores = new Location("Locations/Shores.json");
         Location.SafeRoom = new Location("Locations/SafeRoom.json");
+    }
+
+    void ReadMetaTexts() {
+        String FileContents = "";
+
+        try {
+            FileReader fr = new FileReader("Texts.json");
+            int i;
+            while((i=fr.read())!=-1)
+                FileContents += (char)i;
+            fr.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+
+        JSONObject LocObj = new JSONObject(FileContents);
+
+
+        for (Object i: (JSONArray)LocObj.get("Introduction")) {
+            this.IntroductionTexts.add((String) i);
+        }
     }
 }
