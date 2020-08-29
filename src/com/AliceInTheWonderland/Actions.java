@@ -41,12 +41,17 @@ public class Actions {
 
         location.Visited = true;
 
-        Control.DisplayCollectibleItems(location, 0, "On top of a cupboard, you see a jar");
+        Control.DisplayCollectibleItems(location, 0, location.Texts.get(1));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
-        Control.DisplayCollectibleItems(location, 1, "And is that a map hanging on the wall?");
+        Control.DisplayCollectibleItems(location, 1, location.Texts.get(2));
         Control.GetUserInput(location, PossibleActions.CollectItem);
+
+        System.out.println(location.Texts.get(3));
+        System.out.println(location.Texts.get(4));
+        LongHall();
     }
+
 
     public static void LongHall() {
         Location location = Location.LongHall;

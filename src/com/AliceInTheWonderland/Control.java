@@ -55,7 +55,30 @@ public class Control {
 
     }
 
-    //public static void GiveItem(Item item,)
+    public static boolean GiveItem(Item item, Character character, Location location) {
+        if (HasItem(item)) {
+            DropItem(item.Name);
+
+            if (character == Character.Rabbit && location == character.location) {
+                Wonderland.PaidTheRabbit = true;
+            } else if (character == Character.MarchHare && location == character.location) {
+                Wonderland.PaidTheMarchHare = true;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean HasItem(Item item) {
+
+        for (Item i:Inventory.MyInventory()) {
+            if (i.Name.compareToIgnoreCase(item.Name) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void CollectItem(Item item) {
         if (Inventory.AddItem(item)) System.out.println(item.Name + " collected. You now have " + Inventory.Count() + " items");
         else System.out.println("Could not collect item");

@@ -2,8 +2,10 @@
     "Name": "Deep Well",
     "CardinalLocation": "Up",
     "Texts": [
-        "\t'This rabbit hole is dark. I can barely see where I am going'\n\t'Oops!'\nYou Are falling into a well! \nI have never seen a well this decorated before. \nIs that a map hanging on the wall?",
-        "",
-        ""
+        "\t'This rabbit hole is dark. I can barely see where I am going'\n\t'Oops!'\nYou Are falling into a well! \nOn the walls of the well are cupboards and shelves.",
+        "On top of a cupboard, you see a jar:",
+        "And is that a map hanging on the wall?",
+        "You can drop any item anywhere since you have a capacity to carry only three.",
+        "Boom! You land on a floor. The landing is not as smooth as the flight here :-("
     ]
 }
