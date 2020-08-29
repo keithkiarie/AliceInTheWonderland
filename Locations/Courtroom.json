@@ -1,6 +1,10 @@
 {
     "Name": "Courtroom",
     "CardinalLocation": "East",
-    "FirstVisitText": "This looks so much like a court of law.",
-    "SubsequentVisitText": "You are back in the Courtroom"
+    "Texts": [
+        "Welcome to the Courtroom",
+        "",
+        "",
+        ""
+    ]
 }

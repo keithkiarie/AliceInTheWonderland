@@ -1,6 +1,10 @@
 {
     "Name": "Rabbit's house",
     "CardinalLocation": "West",
-    "FirstVisitText": "What a tiny house.",
-    "SubsequentVisitText": "You are back in the Rabbit's house"
+    "Texts": [
+        "Welcome to the white rabbit's house",
+        "",
+        "",
+        ""
+    ]
 }

@@ -1,6 +1,10 @@
 {
     "Name": "Duchess' house",
     "CardinalLocation": "South",
-    "FirstVisitText": "Who cooks with that much spice!",
-    "SubsequentVisitText": "You are back at the Duchess' house"
+    "Texts": [
+        "Welcome to the Duchess' house",
+        "",
+        "",
+        ""
+    ]
 }

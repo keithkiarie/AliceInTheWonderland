@@ -1,6 +1,10 @@
 {
     "Name": "March Hare's house",
     "CardinalLocation": "Southeast",
-    "FirstVisitText": "Oh! We have a tea party.",
-    "SubsequentVisitText": "You guys have not finished your tea party!"
+    "Texts": [
+        "Welcome to the March Hare's house",
+        "",
+        "",
+        ""
+    ]
 }

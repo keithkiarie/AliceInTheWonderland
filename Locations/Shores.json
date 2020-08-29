@@ -1,6 +1,10 @@
 {
     "Name": "Shores",
     "CardinalLocation": "Northwest",
-    "FirstVisitText": "You are at the shores.",
-    "SubsequentVisitText": "You are back at the shores"
+    "Texts": [
+        "Welcome to the shore",
+        "",
+        "",
+        ""
+    ]
 }
