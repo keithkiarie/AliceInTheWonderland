@@ -1,6 +1,5 @@
 package com.AliceInTheWonderland;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +13,67 @@ public class Control {
 
     // called from a location (in Actions). Takes in a list of items available in that room
     public static void GetUserInput(Location location, PossibleActions possibleActions) {
-        
+        Scanner sc = new Scanner(System.in);
+        String text = sc.NextLine();
+
+        if (text.isEmpty()) {
+            return;
+        }
+
+        String tokens = text.split(" ");
+        if (tokens[0].equalsIgnoreCase("drop")) {
+            DropItem(tokens[1]);
+            return;
+        } else if (tokens[0].equalsIgnoreCase("map")) {
+            DisplayMap();
+            return;
+        } else if(tokens[0].equalsIgnoreCase("instructions")) {
+            PostInstructionsMessage();
+            return;
+        } else if(tokens[0].equalsIgnoreCase("inventory")) {
+            ShowCollectedItems();
+            return;
+        }
+
+        switch(possibleActions) {
+        case AllowChangeOfLocation:
+            if (!tokens[0].equalsIgnoreCase("go")) {
+                System.out.println("You need to choose a place to go...");
+                return GetUserInput(location, possibleActions);
+            }
+
+            CardinalPoint p = location.TextToCardinalPoint(tokens[1]);
+            Location l = location.Exits.get(p);
+            GoToLocation(l);
+            break;
+
+        case CollectItem:
+            if (!tokens[0].equalsIgnoreCase("collect")) {
+                System.out.println("You should collect something before you proceed...");
+                return GetUserInput(location, possibleActions);
+            }
+
+            int x = Integer.parseInt(tokens[1]);
+            Item it = location.Items.get(x);
+            CollectItem(it);
+            break;
+
+        case GiveItem:
+            if (!tokens[0].equalsIgnoreCase("give")) {
+                System.out.println("Maybe you would want to give something?...");
+                return GetUserInput(location, possibleActions);
+            }
+            int x = Integer.parseInt(tokens[1]);
+            Item it = location.Items.get(x);
+            if(Location.RabbitHouse == location.RabbitHouse) { // will be equal?
+                GiveItem(item, Character.Rabbit, location);
+            } else if(Location.MarchHaresHouse == location.MarchHaresHouse) {
+                GiveItem(item, Character.MarchHaresHouse, location);
+            }
+            break;
+        }
+
+
     }
 
     public static void DisplayCollectibleItems(Location location, int index, String Text) {
