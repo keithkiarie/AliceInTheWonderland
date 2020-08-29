@@ -88,25 +88,25 @@ public class Location {
     public static CardinalPoint TextToCardinalPoint(String cardinalPoint) {
 
         switch (cardinalPoint) {
-            case "North":
+            case "north":
                 return CardinalPoint.North;
-            case "Northeast":
+            case "northeast":
                 return CardinalPoint.Northeast;
-            case "East":
+            case "east":
                 return CardinalPoint.East;
-            case "Southeast":
+            case "southeast":
                 return CardinalPoint.Southeast;
-            case "South":
+            case "south":
                 return CardinalPoint.South;
-            case "Southwest":
+            case "southwest":
                 return CardinalPoint.Southwest;
-            case "West":
+            case "west":
                 return CardinalPoint.West;
-            case "Northwest":
+            case "northwest":
                 return CardinalPoint.Northwest;
-            case "Central":
+            case "central":
                 return CardinalPoint.Central;
-            case "Up":
+            case "up":
                 return CardinalPoint.Up;
         }
 

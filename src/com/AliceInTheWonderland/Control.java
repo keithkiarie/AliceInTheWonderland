@@ -42,6 +42,9 @@ public class Control {
                 return GetUserInput(location, possibleActions);
             }
 
+            CardinalPoint p = location.TextToCardinalPoint(tokens[1]);
+            Location l = location.Exits.get(p);
+            GoToLocation(l);
             break;
 
         case CollectItem:
@@ -64,10 +67,8 @@ public class Control {
             Item it = location.Items.get(x);
             if(Location.RabbitHouse == location.RabbitHouse) { // will be equal?
                 GiveItem(item, Character.Rabbit, location);
-                return;
             } else if(Location.MarchHaresHouse == location.MarchHaresHouse) {
                 GiveItem(item, Character.MarchHaresHouse, location);
-                return;
             }
             break;
         }
