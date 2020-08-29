@@ -1,6 +1,13 @@
 Classes:
-	Wonderland (Main)
-	Location
-	Character
-	Item
+	Wonderland (Main) => Creates an instance of the game
+
+	Locations => Minimum of five instances.
+				 Minimum of one entrance and one exit but not the same
+				 One location must have more than 3 exits
+				 A safe room to act as a gathering area for items.
+
+	Character => Minimum of five instances
+	Item => Minimum of 12 instances
 	Actions
+	Inventory => Items in possession
+	Control => Reads user input and checks the input against valid Actions
