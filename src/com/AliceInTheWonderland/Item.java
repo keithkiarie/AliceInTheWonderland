@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Item {
     public String Name;
-    public static Item Gem, Jar, Map, DrinkMeBottle, EatMeCake, Mushroom, Glove, Fan;
+    public static Item Gem, Jar, Map, DrinkMeBottle, EatMeCake, Mushroom, Glove, Fan, GoldenKey;
 
     public ArrayList<Character> CharactersWhoAccept;
 
@@ -31,5 +31,8 @@ public class Item {
 
     static void AddItemsToLocations() {
         Location.DeepWell.AddItem(Item.Jar);
+        Location.DeepWell.AddItem(Item.Map);
+
+        Location.LongHall.AddItem(Item.GoldenKey);
     }
 }
