@@ -3,6 +3,7 @@ package com.AliceInTheWonderland;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Control {
 
@@ -16,6 +17,16 @@ public class Control {
     }
 
     public static void DisplayMap() {
+
+        boolean HasMap = false;
+        for (Item i:Inventory.MyInventory()) {
+            if (i.Name.compareToIgnoreCase("map") == 0) HasMap = true;
+        }
+
+        if (!HasMap) {
+            System.out.println("Damn it! I forgot to collect the map.");
+            return;
+        }
         System.out.println("\nMap\n");
         System.out.println("Current location: " + Wonderland.CurrentLocation.Name);
         System.out.println("Current cardinal location: " + Wonderland.CurrentLocation.CardinalLocation);
@@ -44,7 +55,7 @@ public class Control {
         } else {
             int index = 0;
             for (Item i:Inventory.MyInventory()) {
-                if (i.Name.toUpperCase() == name.toUpperCase()) {
+                if (i.Name.compareToIgnoreCase(name) == 0) {
                     Inventory.DropItem(index);
                     return;
                 }
@@ -98,13 +109,14 @@ public class Control {
     }
 
     public static void PrintDelayedTexts(ArrayList<String> Texts) {
+        Scanner sc= new Scanner(System.in);
+
         for (String Text: Texts) {
             System.out.println(Text);
-            try {
-                System.in.read();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            String UserInput = sc.nextLine();
+
+            if (UserInput.compareToIgnoreCase("skip") == 0) return;
+
         }
     }
 

@@ -22,6 +22,7 @@ public class Wonderland {
     public static boolean TimeIsTakenBack = false;
 
     public ArrayList<String>IntroductionTexts = new ArrayList<String>();
+    public ArrayList<String>InstructionsTexts = new ArrayList<String>();
 
     public static Location CurrentLocation;
 
@@ -36,10 +37,15 @@ public class Wonderland {
         ReadMetaTexts();
 
         PostWelcomeMessage();
+        PostInstructionsMessage();
     }
 
     void PostWelcomeMessage() {
         Control.PrintDelayedTexts(this.IntroductionTexts);
+    }
+
+    void PostInstructionsMessage() {
+        Control.PrintDelayedTexts(this.InstructionsTexts);
     }
 
     void ConstructLocations() {
@@ -75,6 +81,9 @@ public class Wonderland {
 
         for (Object i: (JSONArray)LocObj.get("Introduction")) {
             this.IntroductionTexts.add((String) i);
+        }
+        for (Object i: (JSONArray)LocObj.get("Instructions")) {
+            this.InstructionsTexts.add((String) i);
         }
     }
 }
