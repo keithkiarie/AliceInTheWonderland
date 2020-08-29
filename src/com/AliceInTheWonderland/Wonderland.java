@@ -33,11 +33,16 @@ public class Wonderland {
     }
 
     Wonderland() {
-        ConstructLocations();
+        Location.ConstructLocations();
+        Item.MakeItems();
+
+
         ReadMetaTexts();
 
         PostWelcomeMessage();
         PostInstructionsMessage();
+
+        Actions.DeepWell();
     }
 
     void PostWelcomeMessage() {
@@ -48,19 +53,7 @@ public class Wonderland {
         Control.PrintDelayedTexts(this.InstructionsTexts);
     }
 
-    void ConstructLocations() {
 
-        Location.DeepWell = new Location("Locations/DeepWell.json");
-        Location.LongHall = new Location("Locations/LongHall.json");
-        Location.Garden = new Location("Locations/Garden.json");
-        Location.Courtroom = new Location("Locations/Courtroom.json");
-        Location.MarchHaresHouse = new Location("Locations/MarchHaresHouse.json");
-        Location.DuchessHouse = new Location("Locations/DuchessHouse.json");
-        Location.CroquetPlayground = new Location("Locations/CroquetPlayground.json");
-        Location.RabbitsHouse = new Location("Locations/RabbitsHouse.json");
-        Location.Shores = new Location("Locations/Shores.json");
-        Location.SafeRoom = new Location("Locations/SafeRoom.json");
-    }
 
     void ReadMetaTexts() {
         String FileContents = "";

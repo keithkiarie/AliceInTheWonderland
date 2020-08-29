@@ -1,18 +1,17 @@
 package com.AliceInTheWonderland;
 
-import java.awt.*;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Control {
 
     // called from a location (in Actions). Takes in a list of items available in that room
-    public static void GetUserInput(Location location) {
+    public static void GetUserInput(Location location, boolean AllowChangeOfLocation) {
 
     }
 
-    public static void DisplayCollectibleItems(Location location) {
+    public static void DisplayCollectibleItems(Location location, int index, String Text) {
 
     }
 

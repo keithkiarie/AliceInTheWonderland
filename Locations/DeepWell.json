@@ -2,7 +2,7 @@
     "Name": "Deep Well",
     "CardinalLocation": "Up",
     "Texts": [
-        "Oop! You Are falling into a well! \nI have never seen a well this decorated before. \nIs that a map hanging on the wall?",
+        "\t'This rabbit hole is dark. I can barely see where I am going'\n\t'Oops!'\nYou Are falling into a well! \nI have never seen a well this decorated before. \nIs that a map hanging on the wall?",
         "",
         ""
     ]
