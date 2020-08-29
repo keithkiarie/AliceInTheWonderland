@@ -21,7 +21,10 @@ public class Location {
     public static Location DeepWell, LongHall, Garden, Courtroom, MarchHaresHouse, DuchessHouse,
             CroquetPlayground, RabbitsHouse, Shores, SafeRoom;
 
-    Location(String FileUrl){
+    public ArrayList<Location> Entries = new ArrayList<Location>();
+    public ArrayList<Location> Exits = new ArrayList<Location>();
+
+    Location(String FileUrl) {
         try {
             this.GetFileData(FileUrl);
         } catch (IOException e) {
@@ -33,6 +36,7 @@ public class Location {
     void AddItem(Item item) {
         this.Items.add(item);
     }
+
     static void ConstructLocations() {
 
         Location.DeepWell = new Location("Locations/DeepWell.json");
@@ -45,22 +49,61 @@ public class Location {
         Location.RabbitsHouse = new Location("Locations/RabbitsHouse.json");
         Location.Shores = new Location("Locations/Shores.json");
         Location.SafeRoom = new Location("Locations/SafeRoom.json");
+
+        Location.DeepWell.Exits.add(Location.LongHall);
+
+        Location.LongHall.Entries.add(Location.SafeRoom);
+        Location.LongHall.Exits.add(Location.Shores);
+        Location.LongHall.Exits.add(Location.Garden);
+
+        Location.Garden.Entries.add(Location.LongHall);
+        Location.Garden.Entries.add(Location.Courtroom);
+        Location.Garden.Exits.add(Location.SafeRoom);
+
+        Location.Courtroom.Entries.add(Location.SafeRoom);
+        Location.Courtroom.Exits.add(Location.Garden);
+
+        Location.MarchHaresHouse.Entries.add(Location.DuchessHouse);
+        Location.MarchHaresHouse.Exits.add(Location.SafeRoom);
+
+        Location.DuchessHouse.Entries.add(Location.SafeRoom);
+        Location.DuchessHouse.Exits.add(Location.MarchHaresHouse);
+        Location.DuchessHouse.Exits.add(Location.CroquetPlayground);
+
+        Location.CroquetPlayground.Entries.add(Location.DuchessHouse);
+        Location.CroquetPlayground.Exits.add(Location.SafeRoom);
+
+        Location.RabbitsHouse.Entries.add(Location.Shores);
+        Location.RabbitsHouse.Exits.add(Location.SafeRoom);
+
+        Location.Shores.Entries.add(Location.LongHall);
+        Location.Shores.Exits.add(Location.RabbitsHouse);
     }
 
 
     public static CardinalPoint TextToCardinalPoint(String cardinalPoint) {
 
         switch (cardinalPoint) {
-            case "North": return CardinalPoint.North;
-            case "Northeast": return CardinalPoint.Northeast;
-            case "East": return CardinalPoint.East;
-            case "Southeast": return CardinalPoint.Southeast;
-            case "South": return CardinalPoint.South;
-            case "Southwest": return CardinalPoint.Southwest;
-            case "West": return CardinalPoint.West;
-            case "Northwest": return CardinalPoint.Northwest;
-            case "Central": return CardinalPoint.Central;
-            case "Up": return CardinalPoint.Up;
+            case "North":
+                return CardinalPoint.North;
+            case "Northeast":
+                return CardinalPoint.Northeast;
+            case "East":
+                return CardinalPoint.East;
+            case "Southeast":
+                return CardinalPoint.Southeast;
+            case "South":
+                return CardinalPoint.South;
+            case "Southwest":
+                return CardinalPoint.Southwest;
+            case "West":
+                return CardinalPoint.West;
+            case "Northwest":
+                return CardinalPoint.Northwest;
+            case "Central":
+                return CardinalPoint.Central;
+            case "Up":
+                return CardinalPoint.Up;
         }
 
         throw new IllegalArgumentException();
@@ -72,10 +115,10 @@ public class Location {
         try {
             FileReader fr = new FileReader(FileUrl);
             int i;
-            while((i=fr.read())!=-1)
-                FileContents += (char)i;
+            while ((i = fr.read()) != -1)
+                FileContents += (char) i;
             fr.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw e;
         }
 
@@ -86,7 +129,7 @@ public class Location {
         this.Name = (String) LocObj.get("Name");
         this.CardinalLocation = TextToCardinalPoint((String) LocObj.get("CardinalLocation"));
 
-        for (Object i: (JSONArray)LocObj.get("Texts")) {
+        for (Object i : (JSONArray) LocObj.get("Texts")) {
             this.Texts.add((String) i);
         }
     }
