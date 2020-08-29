@@ -22,8 +22,6 @@ public class Control {
         }
 
         String tokens = text.split(" ");
-
-
         if (tokens[0].equalsIgnoreCase("drop")) {
             DropItem(tokens[1]);
             return;
@@ -31,33 +29,40 @@ public class Control {
             DisplayMap();
             return;
         }else if(tokens[0].equalsIgnoreCase("instructions")){
+            PostInstructionsMessage();
             return;
         } else if(tokens[0].equalsIgnoreCase("inventory")) {
             ShowCollectedItems();
             return;
         }
 
-
         switch(possibleActions) {
         case AllowChangeOfLocation:
-            if (!tokens[0].equalsIgnoreCase("go")){
-                System.out.println("You need to choose ");
-                return;
+            if (!tokens[0].equalsIgnoreCase("go")) {
+                System.out.println("You need to choose a place to go...");
+                return GetUserInput(location, possibleActions);
             }
+
             break;
 
         case CollectItem:
-            if (!tokens[0].equalsIgnoreCase("collect")){
-                System.out.println("You should collect something before you proceed");
+            if (!tokens[0].equalsIgnoreCase("collect")) {
+                System.out.println("You should collect something before you proceed...");
                 return GetUserInput(location, possibleActions);
             }
+            int x = Integer.parseInt(tokens[1]);
+            Item it = location.Items.get(x);
+            CollectItem(it);
             break;
 
         case GiveItem:
-            if (!tokens[0].equalsIgnoreCase("give")){
-                System.out.println("");
-                return;
+            if (!tokens[0].equalsIgnoreCase("give")) {
+                System.out.println("Maybe you would want to give something?...");
+                return GetUserInput(location, possibleActions);
             }
+            int x = Integer.parseInt(tokens[1]);
+            Item it = location.Items.get(x);
+            // expect
             break;
         }
 
