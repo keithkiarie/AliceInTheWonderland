@@ -116,30 +116,39 @@ public class Control {
     public static void GoToLocation(Location location) {
         switch (location.id) {
             case 1:
+                Wonderland.CurrentLocation = Location.LongHall;
                 Actions.LongHall();
                 break;
             case 2:
+                Wonderland.CurrentLocation = Location.Garden;
                 Actions.Garden();
                 break;
             case 3:
                 Actions.Courtroom();
+                Wonderland.CurrentLocation = Location.Courtroom;
                 break;
             case 4:
+                Wonderland.CurrentLocation = Location.MarchHaresHouse;
                 Actions.MarchHaresHouse();
                 break;
             case 5:
+                Wonderland.CurrentLocation = Location.DuchessHouse;
                 Actions.DuchessHouse();
                 break;
             case 6:
+                Wonderland.CurrentLocation = Location.CroquetPlayground;
                 Actions.CroquetPlayground();
                 break;
             case 7:
+                Wonderland.CurrentLocation = Location.RabbitsHouse;
                 Actions.RabbitsHouse();
                 break;
             case 8:
+                Wonderland.CurrentLocation = Location.Shores;
                 Actions.Shores();
                 break;
             case 9:
+                Wonderland.CurrentLocation = Location.SafeRoom;
                 Actions.SafeRoom();
                 break;
         }

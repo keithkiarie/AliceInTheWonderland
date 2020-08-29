@@ -49,7 +49,8 @@ public class Actions {
 
         System.out.println(location.Texts.get(3));
         System.out.println(location.Texts.get(4));
-        LongHall();
+
+        Control.GoToLocation(Location.LongHall);
     }
 
 
@@ -79,7 +80,7 @@ public class Actions {
 
         Wonderland.CurrentLocation = Location.Shores;
 
-        Actions.Shores();
+        Control.GoToLocation(Location.Shores);
     }
 
     public static void Garden() {
