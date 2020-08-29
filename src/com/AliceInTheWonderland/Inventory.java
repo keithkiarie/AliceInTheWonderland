@@ -9,8 +9,12 @@ public class Inventory {
         return CollectedItems.size();
     }
 
-    public static void AddItem(Item item) {
-        if (Inventory.Count() < 3) CollectedItems.add(item);
+    public static boolean AddItem(Item item) {
+        if (Inventory.Count() < 3) {
+            CollectedItems.add(item);
+            return true;
+        }
+        return false;
     }
 
     public static void DropItem(int index) {

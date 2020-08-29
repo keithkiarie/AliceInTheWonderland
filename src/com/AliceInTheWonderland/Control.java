@@ -30,6 +30,30 @@ public class Control {
 
     }
 
+    public static void CollectItem(Item item) {
+        if (Inventory.AddItem(item)) System.out.println(item.Name + " collected. You now have " + Inventory.Count() + " items");
+        else System.out.println("Could not collect item");
+
+        if (Inventory.Count() == 3) System.out.println("You have 3 items. You do not have space for any more");
+    }
+
+    public static void DropItem(String name) {
+        if (Inventory.Count() == 0) {
+            System.out.println("You have no items in your inventory");
+        } else {
+            int index = 0;
+            for (Item i:Inventory.MyInventory()) {
+                if (i.Name.toUpperCase() == name.toUpperCase()) {
+                    Inventory.DropItem(index);
+                    return;
+                }
+                index++;
+            }
+        }
+
+        System.out.println("You do not have a " + name);
+    }
+
     public static void ShowCollectedItems() {
         if (Inventory.Count() == 0) System.out.println("0 collected items");
         else {
