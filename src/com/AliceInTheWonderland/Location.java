@@ -4,6 +4,7 @@ package com.AliceInTheWonderland;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.*;
 
@@ -21,8 +22,10 @@ public class Location {
     public static Location DeepWell, LongHall, Garden, Courtroom, MarchHaresHouse, DuchessHouse,
             CroquetPlayground, RabbitsHouse, Shores, SafeRoom;
 
-    public ArrayList<Location> Entries = new ArrayList<Location>();
-    public ArrayList<Location> Exits = new ArrayList<Location>();
+    public HashMap<CardinalPoint, Location> Entries = new HashMap<CardinalPoint, Location>();
+    public HashMap<CardinalPoint, Location> Exits = new HashMap<CardinalPoint, Location>();
+
+    public
 
     Location(String FileUrl) {
         try {
@@ -50,34 +53,36 @@ public class Location {
         Location.Shores = new Location("Locations/Shores.json");
         Location.SafeRoom = new Location("Locations/SafeRoom.json");
 
-        Location.DeepWell.Exits.add(Location.LongHall);
 
-        Location.LongHall.Entries.add(Location.SafeRoom);
-        Location.LongHall.Exits.add(Location.Shores);
-        Location.LongHall.Exits.add(Location.Garden);
+        // Entries and Exits
+        Location.DeepWell.Exits.put(CardinalPoint.Up,Location.LongHall);
 
-        Location.Garden.Entries.add(Location.LongHall);
-        Location.Garden.Entries.add(Location.Courtroom);
-        Location.Garden.Exits.add(Location.SafeRoom);
+        Location.LongHall.Entries.put(CardinalPoint.South, Location.SafeRoom);
+        Location.LongHall.Exits.put(CardinalPoint.West, Location.Shores);
+        Location.LongHall.Exits.put(CardinalPoint.East, Location.Garden);
 
-        Location.Courtroom.Entries.add(Location.SafeRoom);
-        Location.Courtroom.Exits.add(Location.Garden);
+        Location.Garden.Entries.put(CardinalPoint.West, Location.LongHall);
+        Location.Garden.Entries.put(CardinalPoint.South, Location.Courtroom);
+        Location.Garden.Exits.put(CardinalPoint.Southwest, Location.SafeRoom);
 
-        Location.MarchHaresHouse.Entries.add(Location.DuchessHouse);
-        Location.MarchHaresHouse.Exits.add(Location.SafeRoom);
+        Location.Courtroom.Entries.put(CardinalPoint.West, Location.SafeRoom);
+        Location.Courtroom.Exits.put(CardinalPoint.North, Location.Garden);
 
-        Location.DuchessHouse.Entries.add(Location.SafeRoom);
-        Location.DuchessHouse.Exits.add(Location.MarchHaresHouse);
-        Location.DuchessHouse.Exits.add(Location.CroquetPlayground);
+        Location.MarchHaresHouse.Entries.put(CardinalPoint.West, Location.DuchessHouse);
+        Location.MarchHaresHouse.Exits.put(CardinalPoint.Northwest, Location.SafeRoom);
 
-        Location.CroquetPlayground.Entries.add(Location.DuchessHouse);
-        Location.CroquetPlayground.Exits.add(Location.SafeRoom);
+        Location.DuchessHouse.Entries.put(CardinalPoint.North, Location.SafeRoom);
+        Location.DuchessHouse.Exits.put(CardinalPoint.East, Location.MarchHaresHouse);
+        Location.DuchessHouse.Exits.put(CardinalPoint.West, Location.CroquetPlayground);
 
-        Location.RabbitsHouse.Entries.add(Location.Shores);
-        Location.RabbitsHouse.Exits.add(Location.SafeRoom);
+        Location.CroquetPlayground.Entries.put(CardinalPoint.East, Location.DuchessHouse);
+        Location.CroquetPlayground.Exits.put(CardinalPoint.Northeast, Location.SafeRoom);
 
-        Location.Shores.Entries.add(Location.LongHall);
-        Location.Shores.Exits.add(Location.RabbitsHouse);
+        Location.RabbitsHouse.Entries.put(CardinalPoint.North, Location.Shores);
+        Location.RabbitsHouse.Exits.put(CardinalPoint.East, Location.SafeRoom);
+
+        Location.Shores.Entries.put(CardinalPoint.East, Location.LongHall);
+        Location.Shores.Exits.put(CardinalPoint.South, Location.RabbitsHouse);
     }
 
 
