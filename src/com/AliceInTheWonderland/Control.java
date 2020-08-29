@@ -1,5 +1,6 @@
 package com.AliceInTheWonderland;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Control {
@@ -14,7 +15,19 @@ public class Control {
     }
 
     public static void DisplayMap() {
-        System.out.println("Map");
+        System.out.println("\nMap\n");
+        System.out.println("Current location: " + Wonderland.CurrentLocation.Name);
+        System.out.println("Current cardinal location: " + Wonderland.CurrentLocation.CardinalLocation);
+
+        System.out.println("Long Hall: North");
+        System.out.println("Garden: Northeast");
+        System.out.println("Courtroom: East");
+        System.out.println("March Hare's house: Southeast");
+        System.out.println("Duchess' house: South");
+        System.out.println("Croquet playground: Southwest");
+        System.out.println("Rabbit's house: West");
+        System.out.println("Shores: Northwest");
+
     }
 
     public static void GoToLocation(CardinalPoint location) {
