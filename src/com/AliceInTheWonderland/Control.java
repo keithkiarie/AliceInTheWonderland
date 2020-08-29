@@ -1,6 +1,5 @@
 package com.AliceInTheWonderland;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,10 +24,10 @@ public class Control {
         if (tokens[0].equalsIgnoreCase("drop")) {
             DropItem(tokens[1]);
             return;
-        }else if (tokens[0].equalsIgnoreCase("map")){
+        } else if (tokens[0].equalsIgnoreCase("map")) {
             DisplayMap();
             return;
-        }else if(tokens[0].equalsIgnoreCase("instructions")){
+        } else if(tokens[0].equalsIgnoreCase("instructions")) {
             PostInstructionsMessage();
             return;
         } else if(tokens[0].equalsIgnoreCase("inventory")) {
@@ -50,6 +49,7 @@ public class Control {
                 System.out.println("You should collect something before you proceed...");
                 return GetUserInput(location, possibleActions);
             }
+
             int x = Integer.parseInt(tokens[1]);
             Item it = location.Items.get(x);
             CollectItem(it);
@@ -62,7 +62,13 @@ public class Control {
             }
             int x = Integer.parseInt(tokens[1]);
             Item it = location.Items.get(x);
-            // expect
+            if(Location.RabbitHouse == location.RabbitHouse) { // will be equal?
+                GiveItem(item, Character.Rabbit, location);
+                return;
+            } else if(Location.MarchHaresHouse == location.MarchHaresHouse) {
+                GiveItem(item, Character.MarchHaresHouse, location);
+                return;
+            }
             break;
         }
 
