@@ -21,8 +21,8 @@ public class Wonderland {
     public static boolean PaidTheRabbit = false;
     public static boolean TimeIsTakenBack = false;
 
-    public ArrayList<String>IntroductionTexts = new ArrayList<String>();
-    public ArrayList<String>InstructionsTexts = new ArrayList<String>();
+    public static ArrayList<String>IntroductionTexts = new ArrayList<String>();
+    public static ArrayList<String>InstructionsTexts = new ArrayList<String>();
 
     public static Location CurrentLocation;
 
@@ -33,25 +33,19 @@ public class Wonderland {
     }
 
     Wonderland() {
-        Location.ConstructLocations();
         Item.MakeItems();
+        Location.ConstructLocations();
 
 
         ReadMetaTexts();
 
-        PostWelcomeMessage();
-        PostInstructionsMessage();
+        Control.PostWelcomeMessage();
+        Control.PostInstructionsMessage();
 
         Actions.DeepWell();
     }
 
-    void PostWelcomeMessage() {
-        Control.PrintDelayedTexts(this.IntroductionTexts);
-    }
 
-    void PostInstructionsMessage() {
-        Control.PrintDelayedTexts(this.InstructionsTexts);
-    }
 
 
 
@@ -73,10 +67,10 @@ public class Wonderland {
 
 
         for (Object i: (JSONArray)LocObj.get("Introduction")) {
-            this.IntroductionTexts.add((String) i);
+            Wonderland.IntroductionTexts.add((String) i);
         }
         for (Object i: (JSONArray)LocObj.get("Instructions")) {
-            this.InstructionsTexts.add((String) i);
+            Wonderland.InstructionsTexts.add((String) i);
         }
     }
 }

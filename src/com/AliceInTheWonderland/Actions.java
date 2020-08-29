@@ -42,7 +42,10 @@ public class Actions {
         location.Visited = true;
 
         Control.DisplayCollectibleItems(location, 0, "On top of a cupboard, you see a jar");
-        Control.GetUserInput(location, false);
+        Control.GetUserInput(location, PossibleActions.CollectItem);
+
+        Control.DisplayCollectibleItems(location, 1, "And is that a map hanging on the wall?");
+        Control.GetUserInput(location, PossibleActions.CollectItem);
     }
 
     public static void LongHall() {
@@ -54,7 +57,7 @@ public class Actions {
         location.Visited = true;
 
         Control.DisplayCollectibleItems(location, 0, "");
-        Control.GetUserInput(location, false);
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
     public static void DrinkInLongHall() {
@@ -85,7 +88,7 @@ public class Actions {
 
         location.Visited = true;
 
-        Control.GetUserInput(location, true);
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
     public static void Shores() {
@@ -103,7 +106,7 @@ public class Actions {
         location.Visited = true;
 
         Control.DisplayCollectibleItems(location, 0, "");
-        Control.GetUserInput(location, false);
+        Control.GetUserInput(location, PossibleActions.CollectItem);
     }
 
     public static void RabbitsHouse() {
@@ -122,7 +125,7 @@ public class Actions {
         location.Visited = true;
 
         Control.DisplayCollectibleItems(location, 0, "");
-        Control.GetUserInput(location, false);
+        Control.GetUserInput(location, PossibleActions.CollectItem);
     }
 
     public static void MarchHaresHouse() {

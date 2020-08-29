@@ -30,6 +30,9 @@ public class Location {
         }
     }
 
+    void AddItem(Item item) {
+        this.Items.add(item);
+    }
     static void ConstructLocations() {
 
         Location.DeepWell = new Location("Locations/DeepWell.json");

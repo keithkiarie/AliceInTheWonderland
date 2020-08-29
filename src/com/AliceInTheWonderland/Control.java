@@ -21,6 +21,14 @@ public class Control {
 
     }
 
+    public static void PostWelcomeMessage() {
+        Control.PrintDelayedTexts(Wonderland.IntroductionTexts);
+    }
+
+    public static void PostInstructionsMessage() {
+        Control.PrintDelayedTexts(Wonderland.InstructionsTexts);
+    }
+
     public static void DisplayMap() {
 
         boolean HasMap = false;
