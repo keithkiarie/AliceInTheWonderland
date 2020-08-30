@@ -1,5 +1,6 @@
 package com.AliceInTheWonderland;
 
+import java.awt.desktop.SystemEventListener;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -43,16 +44,18 @@ public class Actions {
         location.Visited = true;
 
         // she sees a jar
-        Control.DisplayCollectibleItems(location, 0, location.Texts.get(1));
+        System.out.println(location.Texts.get(1));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
         if (Inventory.HasItem(Item.Jar)) {
-            Control.DisplayCollectibleItems(location, 1, location.Texts.get(2));
+            System.out.println(location.Texts.get(2));
             Control.GetUserInput(location, PossibleActions.CollectItem);
         }
 
         // she sees map hanging on the wall
-        Control.DisplayCollectibleItems(location, 2, location.Texts.get(3));
+        if (location.Items.get(0) == Item.Gem) Wonderland.CurrentLocation.Items.remove(0);
+
+        System.out.println(location.Texts.get(3));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
 
@@ -73,7 +76,8 @@ public class Actions {
         location.Visited = true;
 
         // collect golden key
-        Control.DisplayCollectibleItems(location, 0, location.Texts.get(2));
+        System.out.println(location.Texts.get(2));
+        Control.GetUserInput(location, PossibleActions.CollectItem);
 
         // drink me bottle and eat me cake
         System.out.println(location.Texts.get(3));
@@ -142,6 +146,7 @@ public class Actions {
             Control.GetUserInput(location, PossibleActions.GiveItem);
 
             if (Wonderland.PaidPrizeForTheRace) {
+                System.out.println(location.Texts.get(4));
                 Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
             }
 
@@ -165,17 +170,30 @@ public class Actions {
 
         if (!location.Visited && Wonderland.GamePlot == Plot.Rabbit) {
             System.out.println(location.Texts.get(0));
+            Control.GetUserInput(location, PossibleActions.CollectItem); // mushroom
+
+            System.out.println(location.Texts.get(1)); //he gives you instructions
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+
+        } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && !Wonderland.PaidTheRabbit) {
+            System.out.println(location.Texts.get(2));
+            Control.GetUserInput(location, PossibleActions.CollectItem); // mushroom
+
+            System.out.println(location.Texts.get(1)); //he gives you instructions
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+
         } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && Wonderland.TimeIsTakenBack) {
             System.out.println(location.Texts.get(1));
+
         } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && !Wonderland.TimeIsTakenBack) {
             System.out.println(location.Texts.get(2));
+
         } else if (Wonderland.GamePlot == Plot.Duchess) {
             System.out.println(location.Texts.get(3));
         }
 
         location.Visited = true;
 
-        Control.DisplayCollectibleItems(location, 0, "");
         Control.GetUserInput(location, PossibleActions.CollectItem);
     }
 
