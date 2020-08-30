@@ -24,4 +24,14 @@ public class Inventory {
     public static ArrayList<Item> MyInventory() {
         return CollectedItems;
     }
+
+    public static boolean HasItem(Item item) {
+
+        for (Item i : Inventory.MyInventory()) {
+            if (i.Name.compareToIgnoreCase(item.Name) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
