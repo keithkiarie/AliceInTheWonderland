@@ -16,18 +16,24 @@ public class Location {
     public CardinalPoint CardinalLocation;
     public String Name;
     public int id;
-    public ArrayList<String> Texts = new ArrayList<String>();
-    public ArrayList<Item> Items = new ArrayList<Item>();
+    public ArrayList<String> Texts;
+    public ArrayList<Item> Items;
     public boolean Visited = false;
 
     public static Location DeepWell, LongHall, Garden, Courtroom, MarchHaresHouse, DuchessHouse,
             CroquetPlayground, RabbitsHouse, Shores, SafeRoom;
 
-    public HashMap<CardinalPoint, Location> Entries = new HashMap<CardinalPoint, Location>();
-    public HashMap<CardinalPoint, Location> Exits = new HashMap<CardinalPoint, Location>();
+    public HashMap<CardinalPoint, Location> Entries;
+    public HashMap<CardinalPoint, Location> Exits;
 
     public Location(String FileUrl, int id) {
         this.id = id;
+
+        this.Texts = new ArrayList<String>();
+        this.Items = new ArrayList<Item>();
+        this.Entries = new HashMap<CardinalPoint, Location>();
+        this.Exits = new HashMap<CardinalPoint, Location>();
+
         try {
             this.GetFileData(FileUrl);
         } catch (IOException e) {
