@@ -107,22 +107,31 @@ public class Location {
 
         switch (cardinalPoint.toLowerCase()) {
             case "north":
+            case "n":
                 return CardinalPoint.North;
             case "northeast":
+            case "ne":
                 return CardinalPoint.Northeast;
             case "east":
+            case "e":
                 return CardinalPoint.East;
             case "southeast":
+            case "se":
                 return CardinalPoint.Southeast;
             case "south":
+            case "s":
                 return CardinalPoint.South;
             case "southwest":
+            case "sw":
                 return CardinalPoint.Southwest;
             case "west":
+            case "w":
                 return CardinalPoint.West;
             case "northwest":
+            case "nw":
                 return CardinalPoint.Northwest;
             case "central":
+            case "c":
                 return CardinalPoint.Central;
         }
 

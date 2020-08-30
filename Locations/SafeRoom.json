@@ -2,8 +2,8 @@
     "Name": "Safe Room",
     "CardinalLocation": "Central",
     "Texts": [
-        "Welcome to the Safe Room",
-        "",
+        "You are in the Safe Room. If you drop items here, you can come to pick them up later",
+        "You are in the Safe Room",
         "",
         ""
     ]

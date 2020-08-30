@@ -66,7 +66,8 @@ public class Control {
                     return;
                 }
 
-                CollectItem();
+                if (location.Items.size() == 0) System.out.println("There are no items to collect");
+                else CollectItem();
                 break;
 
             case GiveItem:
@@ -76,7 +77,10 @@ public class Control {
                     return;
                 }
 
-
+                if (Inventory.Count() == 0) {
+                    System.out.println("You do not have any item in your inventory");
+                    return;
+                }
                 for (Item i : Inventory.MyInventory()) {
                     if (i.Name.equalsIgnoreCase(tokens[1])) {
                         if (GiveItem(i)) System.out.println("Item accepted");
@@ -246,9 +250,16 @@ public class Control {
 
         int index = 0;
         for (Item i : Inventory.MyInventory()) {
-            if (i.Name.compareToIgnoreCase(name) == 0) {
-                Inventory.DropItem(index);
-                System.out.println("\t" + i.Name + " dropped");
+            if (i.Name.equalsIgnoreCase(name)) {
+                if (Wonderland.CurrentLocation == Location.SafeRoom) {
+                    if (Location.SafeRoom.Items.size() == 1) Location.SafeRoom.Items.remove(0);
+                    Location.SafeRoom.Items.add(i);
+                    Inventory.DropItem(index);
+                    System.out.println("\t" + i.Name + " left in the Safe Room");
+                } else {
+                    Inventory.DropItem(index);
+                    System.out.println("\t" + i.Name + " dropped");
+                }
                 return;
             }
             index++;

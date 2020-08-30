@@ -179,7 +179,7 @@ public class Actions {
             System.out.println(location.Texts.get(1));
             Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
 
-        } else  {
+        } else {
             location.Visited = true;
 
             System.out.println(location.Texts.get(2));
@@ -224,22 +224,59 @@ public class Actions {
     }
 
     public static void MarchHaresHouse() {
+        Location location = Location.MarchHaresHouse;
 
+        if (!location.Visited) System.out.println(location.Texts.get(0));
+        else System.out.println(location.Texts.get(1));
+
+        location.Visited = true;
+        Wonderland.PaidTheMarchHare = true;
+
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
     public static void Courtroom() {
+        Location location = Location.Courtroom;
 
+        System.out.println("This is the Courtroom");
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
     public static void DuchessHouse() {
+        Location location = Location.DuchessHouse;
 
+        if (!location.Visited && Wonderland.GamePlot == Plot.Duchess) {
+            System.out.println(location.Texts.get(0));
+        } else if (Wonderland.GamePlot == Plot.Rabbit || !Wonderland.PaidTheMarchHare) {
+            System.out.println(location.Texts.get(1));
+        } else {
+            System.out.println(location.Texts.get(2));
+        }
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
     public static void CroquetPlayground() {
+        Location location = Location.CroquetPlayground;
 
+        System.out.println("This is the Croquet Playground");
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
     public static void SafeRoom() {
+        Location location = Location.SafeRoom;
 
+        if (!location.Visited) {
+            System.out.println(location.Texts.get(0));
+            location.Visited = true;
+        } else {
+            System.out.println(location.Texts.get(1));
+            if (location.Items.size() == 0) {
+                System.out.println("\tThere is no stored item.");
+            } else {
+                System.out.println("You have stored a " + location.Items.get(0));
+                Control.GetUserInput(location, PossibleActions.CollectItem);
+            }
+        }
+        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 }
