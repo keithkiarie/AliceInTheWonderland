@@ -11,7 +11,7 @@ public class Inventory {
 
     public static boolean AddItem(Item item) {
         if (Inventory.Count() < 3) {
-            CollectedItems.add(item);
+            Inventory.CollectedItems.add(item);
             return true;
         }
         return false;
