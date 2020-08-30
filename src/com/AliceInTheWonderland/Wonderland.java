@@ -56,6 +56,10 @@ public class Wonderland {
 
 
 
+    static void GameOver(String EndingMessage) {
+        System.out.println(EndingMessage);
+        System.exit(0);
+    }
 
 
     void ReadMetaTexts() {
