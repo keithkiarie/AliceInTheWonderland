@@ -2,6 +2,7 @@ package com.AliceInTheWonderland;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 enum PossibleActions {
@@ -130,6 +131,7 @@ public class Control {
                             return true;
                         } else {
                             Item.ConsumeItem(i);
+                            break;
                         }
                     }
                 }
@@ -182,7 +184,12 @@ public class Control {
         System.out.println("\t\tCroquet playground: Southwest");
         System.out.println("\t\tRabbit's house: West");
         System.out.println("\t\tShores: Northwest");
+        System.out.println("\t\tSafe Room: Centre");
 
+        System.out.println("\n\tExits:");
+        for (Map.Entry<CardinalPoint, Location> Exit : Wonderland.CurrentLocation.Exits.entrySet()) {
+            System.out.println("\t\t" + Exit.getValue().Name);
+        }
     }
 
     public static boolean GiveItem(Item item) {
