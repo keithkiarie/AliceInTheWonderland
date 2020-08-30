@@ -133,8 +133,10 @@ public class Actions {
         if (!location.Visited && !Location.Garden.Visited) {
             Wonderland.GamePlot = Plot.Rabbit;
             System.out.println(location.Texts.get(0));
+
         } else if (location.Visited && Wonderland.CriedAtLongHall) {
             System.out.println(location.Texts.get(1));
+            
         } else if (location.Visited && !Wonderland.CriedAtLongHall) {
             System.out.println(location.Texts.get(2));
         }
