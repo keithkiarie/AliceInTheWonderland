@@ -24,15 +24,23 @@ public class Item {
         Item.Fan = new Item("Hand fan", new ArrayList<Character>());
 
 
+        PlaceItemsInLocations();
+
+        // characters who can accept an item
         Item.Gem.CharactersWhoAccept.add(Character.MarchHare);
         Item.Glove.CharactersWhoAccept.add(Character.Rabbit);
         Item.Fan.CharactersWhoAccept.add(Character.Rabbit);
     }
 
-    static void AddItemsToLocations() {
+    static void PlaceItemsInLocations() {
         Location.DeepWell.AddItem(Item.Jar);
+        Location.DeepWell.AddItem(Item.Gem);
         Location.DeepWell.AddItem(Item.Map);
 
         Location.LongHall.AddItem(Item.GoldenKey);
+        Location.LongHall.AddItem(Item.DrinkMeBottle);
+        Location.LongHall.AddItem(Item.EatMeCake);
+        Location.LongHall.AddItem(Item.Fan);
+        Location.LongHall.AddItem(Item.Glove);
     }
 }
