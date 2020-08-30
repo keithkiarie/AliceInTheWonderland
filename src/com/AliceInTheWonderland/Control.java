@@ -14,7 +14,7 @@ public class Control {
 
     // called from a location (in Actions). Takes in a list of items available in that room
     public static void GetUserInput(Location location, PossibleActions possibleActions) {
-        
+
     }
 
     public static void DisplayCollectibleItems(Location location, int index, String Text) {
@@ -32,7 +32,7 @@ public class Control {
     public static void DisplayMap() {
 
         boolean HasMap = false;
-        for (Item i:Inventory.MyInventory()) {
+        for (Item i : Inventory.MyInventory()) {
             if (i.Name.compareToIgnoreCase("map") == 0) HasMap = true;
         }
 
@@ -56,7 +56,7 @@ public class Control {
     }
 
     public static boolean GiveItem(Item item, Character character, Location location) {
-        if (HasItem(item)) {
+        if (Inventory.HasItem(item)) {
             DropItem(item.Name);
 
             if (character == Character.Rabbit && location == character.location) {
@@ -69,20 +69,14 @@ public class Control {
         return false;
     }
 
-    public static boolean HasItem(Item item) {
 
-        for (Item i:Inventory.MyInventory()) {
-            if (i.Name.compareToIgnoreCase(item.Name) == 0) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static void CollectItem(Item item) {
-        if (Inventory.AddItem(item)) System.out.println(item.Name + " collected. You now have " + Inventory.Count() + " items");
+        if (Inventory.AddItem(item)) System.out.println(item.Name + " collected.");
         else System.out.println("Could not collect item");
 
+        if (Inventory.Count() == 3) System.out.println("You have collected 1 item. Your pocket fits 3.");
+        if (Inventory.Count() == 2) System.out.println("You have 2 items in you pocket. Space for only one more! If you wish, you can drop an item.");
         if (Inventory.Count() == 3) System.out.println("You have 3 items. You do not have space for any more");
     }
 
@@ -91,7 +85,7 @@ public class Control {
             System.out.println("You have no items in your inventory");
         } else {
             int index = 0;
-            for (Item i:Inventory.MyInventory()) {
+            for (Item i : Inventory.MyInventory()) {
                 if (i.Name.compareToIgnoreCase(name) == 0) {
                     Inventory.DropItem(index);
                     return;
@@ -107,7 +101,7 @@ public class Control {
         if (Inventory.Count() == 0) System.out.println("0 collected items");
         else {
             System.out.println("Collected items:");
-            for (Item i:Inventory.MyInventory()) {
+            for (Item i : Inventory.MyInventory()) {
                 System.out.println("\t" + i.Name);
             }
         }
@@ -157,7 +151,7 @@ public class Control {
     public static void PrintDelayedTexts(ArrayList<String> Texts) {
         Scanner sc = new Scanner(System.in);
 
-        for (String Text: Texts) {
+        for (String Text : Texts) {
             System.out.println(Text);
             String UserInput = sc.nextLine();
 
