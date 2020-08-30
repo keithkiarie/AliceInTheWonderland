@@ -19,11 +19,12 @@ public class Item {
         Item.Gem = new Item("Gem", new ArrayList<Character>(), false);
         Item.Jar = new Item("Jar", new ArrayList<Character>(), false);
         Item.Map = new Item("Map", new ArrayList<Character>(), false);
-        Item.DrinkMeBottle = new Item("DrinkMeBottle", new ArrayList<Character>(), true);
-        Item.EatMeCake = new Item("EatMeCake", new ArrayList<Character>(), true);
+        Item.GoldenKey = new Item("Key", new ArrayList<Character>(), false);
+        Item.DrinkMeBottle = new Item("Bottle", new ArrayList<Character>(), true);
+        Item.EatMeCake = new Item("Cake", new ArrayList<Character>(), true);
         Item.Mushroom = new Item("Mushroom", new ArrayList<Character>(), true);
-        Item.Glove = new Item("White glove", new ArrayList<Character>(), false);
-        Item.Fan = new Item("Hand fan", new ArrayList<Character>(), false);
+        Item.Glove = new Item("Glove", new ArrayList<Character>(), false);
+        Item.Fan = new Item("Fan", new ArrayList<Character>(), false);
 
 
         // characters who can accept an item
@@ -42,6 +43,8 @@ public class Item {
         Location.LongHall.AddItem(Item.EatMeCake);
         Location.LongHall.AddItem(Item.Fan);
         Location.LongHall.AddItem(Item.Glove);
+
+        Location.RabbitsHouse.AddItem(Item.Mushroom);
     }
 
     static void ConsumeItem(Item item) {
