@@ -26,9 +26,7 @@ public class Location {
     public HashMap<CardinalPoint, Location> Entries = new HashMap<CardinalPoint, Location>();
     public HashMap<CardinalPoint, Location> Exits = new HashMap<CardinalPoint, Location>();
 
-    public
-
-    Location(String FileUrl, int id) {
+    public Location(String FileUrl, int id) {
         this.id = id;
         try {
             this.GetFileData(FileUrl);
@@ -40,6 +38,17 @@ public class Location {
 
     void AddItem(Item item) {
         this.Items.add(item);
+    }
+
+    void RemoveItem(Item item) {
+        int index = 0;
+        for (Item i: this.Items) {
+            if (i.Name.compareToIgnoreCase(item.Name) == 0) {
+                this.Items.remove(index);
+                return;
+            }
+            index++;
+        }
     }
 
     static void ConstructLocations() {
@@ -57,7 +66,7 @@ public class Location {
 
 
         // Entries and Exits
-        Location.DeepWell.Exits.put(CardinalPoint.Up,Location.LongHall);
+        Location.DeepWell.Exits.put(CardinalPoint.Up, Location.LongHall);
 
         Location.LongHall.Entries.put(CardinalPoint.South, Location.SafeRoom);
         Location.LongHall.Exits.put(CardinalPoint.West, Location.Shores);
