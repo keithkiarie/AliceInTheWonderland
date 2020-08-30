@@ -2,9 +2,12 @@
     "Name": "Courtroom",
     "CardinalLocation": "East",
     "Texts": [
-        "You are in the courtroom. If you lie, Dinah is saved and Jack is falsely charged.\nIf you refuse to lie, the Queen executes Dinah.",
+        "You are in the courtroom. If you lie, Dinah is saved and Jack is falsely charged.\nIf you refuse to lie, the Queen executes Dinah.\nWill you tell the truth? (Yes or No)",
+
         "You are in the courtroom.",
+
         "Jack is wrongfully charged and is executed. Nonetheless, the Queen still uses Dinah for her game of croquet and she dies.\nWhat a lose!",
+
         "After telling the truth, you grow so big that you knock over the entire courtroom.\nThe Queen's guards come rushing at you.\nYou wake up and find yourself beside your sister who is now almost done reading her boring book. :-)"
     ]
 }

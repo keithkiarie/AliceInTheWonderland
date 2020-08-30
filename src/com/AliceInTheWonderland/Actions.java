@@ -238,8 +238,16 @@ public class Actions {
     public static void Courtroom() {
         Location location = Location.Courtroom;
 
-        System.out.println("This is the Courtroom");
-        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+        if (!location.Visited && Wonderland.GamePlot == Plot.Duchess) {
+            System.out.println(location.Texts.get(0));
+            Control.GetUserInput(location, PossibleActions.YesOrNo);
+
+            if (Wonderland.YesOrNo == YesOrNo.Yes) Wonderland.GameOver(location.Texts.get(3));
+            else Wonderland.GameOver(location.Texts.get(2));
+        } else {
+            System.out.println(location.Texts.get(1));
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+        }
     }
 
     public static void DuchessHouse() {
@@ -258,8 +266,21 @@ public class Actions {
     public static void CroquetPlayground() {
         Location location = Location.CroquetPlayground;
 
-        System.out.println("This is the Croquet Playground");
-        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+        if (!location.Visited && Wonderland.GamePlot == Plot.Duchess) {
+            System.out.println(location.Texts.get(0));
+            Control.GetUserInput(location, PossibleActions.YesOrNo);
+
+            if (Wonderland.YesOrNo == YesOrNo.Yes) {
+                System.out.println(location.Texts.get(2));
+                Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+            } else {
+                Wonderland.GameOver(location.Texts.get(3));
+            }
+        }
+        else {
+            System.out.println(location.Texts.get(1));
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+        }
     }
 
     public static void SafeRoom() {

@@ -20,6 +20,10 @@ enum Size {
     Normal
 }
 
+enum YesOrNo {
+    Yes, No
+}
+
 public class Wonderland {
 
     public static Plot GamePlot;
@@ -29,6 +33,7 @@ public class Wonderland {
     public static boolean PaidTheRabbit = false;
     public static boolean PaidTheMarchHare = false;
     public static boolean PaidPrizeForTheRace = false;
+    public static YesOrNo YesOrNo;
 
     public static boolean TimeIsTakenBack = false;
     public static Size AliceSize = Size.Normal;

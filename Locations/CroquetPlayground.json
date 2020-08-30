@@ -3,8 +3,11 @@
     "CardinalLocation": "Southwest",
     "Texts": [
         "You are at the croquet playground. You meet the Queen and ask her to spare Dinah.\nHowever, the Queen asks you for a favor. She suspects that Jack of Hearts, a close friend to the King, stole her pies.\nShe has no evidence though and the King won't have him jailed. The Queen asks you to lie in a court that you saw Jack commit the crime and for this she will give you Dinah. Will you accept the Queen's offer:\nYes or no?",
+
         "You are at the croquet playground",
+
         "The Queen is glad. Let's meet in the courtroom at the East of Wonderland",
+        
         "The Queen is angered.\n\t'Off with its head!', she shouts.\nAnd Dinah is executed."
     ]
 }

@@ -9,7 +9,8 @@ enum PossibleActions {
     AllowChangeOfLocation,
     CollectItem,
     GiveItem,
-    Global
+    Global,
+    YesOrNo
 }
 
 public class Control {
@@ -34,6 +35,17 @@ public class Control {
 
 
         switch (possibleActions) {
+            case YesOrNo:
+                if (!tokens[0].equalsIgnoreCase("yes") ||tokens[0].equalsIgnoreCase("no") ) {
+                    System.out.println("\tAnswer with a 'yes' or 'no'.");
+                    GetUserInput(location, possibleActions);
+                    return;
+                }
+
+                if (tokens[0].equalsIgnoreCase("yes")) Wonderland.YesOrNo = YesOrNo.Yes;
+                else Wonderland.YesOrNo = YesOrNo.No;
+                break;
+
             case AllowChangeOfLocation:
                 if (!tokens[0].equalsIgnoreCase("go")) {
                     System.out.println("You need to choose a place to go...");
