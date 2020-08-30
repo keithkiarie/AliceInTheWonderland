@@ -131,13 +131,18 @@ public class Actions {
         Location location = Location.Shores;
 
         if (!location.Visited && !Location.Garden.Visited) {
+            // first time visiting and the plot is around the white rabbit
             Wonderland.GamePlot = Plot.Rabbit;
             System.out.println(location.Texts.get(0));
 
+            Control.GetUserInput(location, PossibleActions.GiveItem);
+            if (Inventory.Count() == 0) Wonderland.GameOver("You did not have an item to give the animals and they stoned you");
+
         } else if (location.Visited && Wonderland.CriedAtLongHall) {
+            // visiting here again and she hand cried before
             System.out.println(location.Texts.get(1));
-            
-        } else if (location.Visited && !Wonderland.CriedAtLongHall) {
+
+        } else  {
             System.out.println(location.Texts.get(2));
         }
 
