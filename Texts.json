@@ -10,16 +10,17 @@
         "\nWelcome to Wonderland, Alice!"
     ],
     "Instructions": [
-        "To skip this tutorial, type 'skip'.",
-        "\nTo move in any direction, simply type it e.g. 'Go North', 'Go South', 'Go Northwest' e.t.c.",
-        "To see the map, type 'see map', 'show map' or simply 'map'",
-        "To collect an item, type 'collect gem', 'collect map', collect bottle' e.t.c.",
-        "To consume an item, you first need to collect it. Then, type 'drink', 'eat mushroom', 'eat cake' e.t.c",
-        "You can also drop an item you have collected.",
-        "To check items you have, type 'show inventory', 'i' or 'show items'",
-        "To give an item, type 'give gem', 'give glove' e.t.c.",
-        "If you do not wish to perform any action, simply press 'Enter'",
-        "To see these instructions anywhere, type 'instructions'",
-        "Remember to have fun in Wonderland, Alice!"
+        "\tGame Instructions:",
+        "\t\tTo skip this tutorial, type 'skip'.",
+        "\t\tTo move in any direction, simply type it e.g. 'Go North', 'Go South', 'Go Northwest' e.t.c.",
+        "\t\tTo see the map, type 'see map', 'show map' or simply 'map'",
+        "\t\tTo collect an item, simply type 'collect'",
+        "\t\tTo consume an item, you first need to collect it. Then, type 'drink', 'eat mushroom', 'eat cake' e.t.c",
+        "\t\tYou can also drop an item you have collected. Type 'drop gem', 'drop map' e.t.c.",
+        "\t\tTo check items you have, type 'show inventory', 'i' or 'show items'",
+        "\t\tTo give an item, type 'give gem', 'give glove' e.t.c.",
+        "\t\tIf you do not wish to perform any action, simply press 'Enter'",
+        "\t\tTo see these instructions anywhere, type 'instructions'",
+        "\t\tRemember to have fun in Wonderland, Alice!\n"
     ]
 }
