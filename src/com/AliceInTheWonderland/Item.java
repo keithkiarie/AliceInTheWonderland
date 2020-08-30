@@ -3,7 +3,7 @@ package com.AliceInTheWonderland;
 import java.util.ArrayList;
 
 public class Item {
-    public static Item Gem, Jar, Map, DrinkMeBottle, EatMeCake, Mushroom, Glove, Fan, GoldenKey;
+    public static Item Gem, Jar, Map, DrinkMeBottle, EatMeCake, Mushroom, GloveAndFan, GoldenKey;
 
     public String Name;
     public boolean Edible;
@@ -23,14 +23,12 @@ public class Item {
         Item.DrinkMeBottle = new Item("Bottle", new ArrayList<Character>(), true);
         Item.EatMeCake = new Item("Cake", new ArrayList<Character>(), true);
         Item.Mushroom = new Item("Mushroom", new ArrayList<Character>(), true);
-        Item.Glove = new Item("Glove", new ArrayList<Character>(), false);
-        Item.Fan = new Item("Fan", new ArrayList<Character>(), false);
+        Item.GloveAndFan = new Item("Glove and Hand Fan", new ArrayList<Character>(), false);
 
 
         // characters who can accept an item
         Item.Gem.CharactersWhoAccept.add(Character.MarchHare);
-        Item.Glove.CharactersWhoAccept.add(Character.Rabbit);
-        Item.Fan.CharactersWhoAccept.add(Character.Rabbit);
+        Item.GloveAndFan.CharactersWhoAccept.add(Character.Rabbit);
     }
 
     static void PlaceItemsInLocations() {
@@ -55,13 +53,15 @@ public class Item {
 
             Wonderland.AliceSize = Size.Short;
             Control.DropItem(item.Name);
-            Actions.DrinkInLongHall();
+
+            if (Wonderland.CurrentLocation == Location.LongHall && !Location.Garden.Visited && !Location.Shores.Visited) Actions.DrinkInLongHall();
         } else if (item.Name.compareToIgnoreCase(Item.EatMeCake.Name) == 0) {
             System.out.println("You have eaten the cake. And now you're becoming very tall!");
 
             Wonderland.AliceSize = Size.Tall;
             Control.DropItem(item.Name);
-            Actions.EatCakeInLongHall();
+
+            if (Wonderland.CurrentLocation == Location.LongHall && !Location.Garden.Visited && !Location.Shores.Visited) Actions.EatCakeInLongHall();
         } else if (item.Name.compareToIgnoreCase(Item.Mushroom.Name) == 0) {
 
             if (Wonderland.AliceSize == Size.Normal) Wonderland.AliceSize = Size.Short;
