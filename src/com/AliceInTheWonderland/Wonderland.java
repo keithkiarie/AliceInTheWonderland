@@ -24,6 +24,7 @@ public class Wonderland {
 
     public static Plot GamePlot;
     public static boolean CriedAtLongHall = false;
+    public  static boolean ConsumptionAtLongHall = false;
 
     public static boolean PaidTheRabbit = false;
     public static boolean PaidTheMarchHare = false;
@@ -61,7 +62,7 @@ public class Wonderland {
 
 
     static void GameOver(String EndingMessage) {
-        System.out.println(EndingMessage);
+        System.out.println("\nGAME OVER:" + EndingMessage);
         System.exit(0);
     }
 

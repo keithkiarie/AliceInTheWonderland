@@ -82,14 +82,26 @@ public class Actions {
         // drink me bottle and eat me cake
         System.out.println(location.Texts.get(3));
         Control.GetUserInput(location, PossibleActions.CollectItem);
-        location.Texts.get(4);
+        System.out.println(location.Texts.get(4));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
+        if (!Wonderland.ConsumptionAtLongHall) {
+            if (Location.LongHall.Items.size() == 0) {
+                Location.LongHall.AddItem(Item.DrinkMeBottle);
+                Location.LongHall.AddItem(Item.EatMeCake);
+            }
 
+            System.out.println(location.Texts.get(8));
+            Control.GetUserInput(location, PossibleActions.CollectItem);
 
+            System.out.println(location.Texts.get(9));
+            Control.GetUserInput(location, PossibleActions.CollectItem);
+        }
     }
 
     public static void DrinkInLongHall() {
+        Wonderland.ConsumptionAtLongHall = true;
+
         Location location = Location.LongHall;
         System.out.println(location.Texts.get(5));
 
@@ -106,9 +118,11 @@ public class Actions {
     }
 
     public static void EatCakeInLongHall() {
+        Wonderland.ConsumptionAtLongHall = true;
+
         // she becomes so tall, she cries, then she shrinks
         Location location = Location.LongHall;
-        System.out.println(location.Texts.get(6));
+        System.out.println(location.Texts.get(7));
 
         Wonderland.CriedAtLongHall = true;
 
@@ -169,6 +183,9 @@ public class Actions {
         Location location = Location.RabbitsHouse;
 
         if (!location.Visited && Wonderland.GamePlot == Plot.Rabbit) {
+            Location.LongHall.AddItem(Item.Fan);
+            Location.LongHall.AddItem(Item.Glove);
+
             System.out.println(location.Texts.get(0));
             Control.GetUserInput(location, PossibleActions.CollectItem); // mushroom
 

@@ -7,7 +7,8 @@ import java.util.Scanner;
 enum PossibleActions {
     AllowChangeOfLocation,
     CollectItem,
-    GiveItem
+    GiveItem,
+    Global
 }
 
 public class Control {
@@ -18,7 +19,9 @@ public class Control {
         String text = sc.nextLine();
 
         if (text.isEmpty() || text.equalsIgnoreCase("skip")) {
-            if (possibleActions == PossibleActions.CollectItem) Wonderland.CurrentLocation.Items.remove(0);
+            if (possibleActions == PossibleActions.CollectItem || possibleActions == PossibleActions.Global){
+                Wonderland.CurrentLocation.Items.remove(0);
+            }
             return;
         }
 
@@ -58,6 +61,7 @@ public class Control {
             ShowCollectedItems();
             GetUserInput(location, possibleActions);
             return;
+
         } else if (tokens[0].equalsIgnoreCase("consume") || tokens[0].equalsIgnoreCase("eat")
                 || tokens[0].equalsIgnoreCase("drink")) {
 
@@ -200,6 +204,8 @@ public class Control {
 
         Wonderland.CurrentLocation.Items.remove(0);
 
+        if (item.Edible) GetUserInput(Wonderland.CurrentLocation, PossibleActions.Global); // a chance to eat it
+
         if (Inventory.Count() == 2)
             System.out.println("\tYou have 2 items in you pocket. Space for only one more! If you wish, you can drop an item.");
         if (Inventory.Count() == 3) System.out.println("\tYou have 3 items. You do not have space for any more");
@@ -277,7 +283,7 @@ public class Control {
             System.out.println(Text);
             String UserInput = sc.nextLine();
 
-            if (UserInput.compareToIgnoreCase("skip") == 0) return;
+            if (UserInput.equalsIgnoreCase("skip") || UserInput.equalsIgnoreCase("s")) return;
 
         }
     }

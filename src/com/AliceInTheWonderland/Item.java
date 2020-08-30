@@ -41,8 +41,7 @@ public class Item {
         Location.LongHall.AddItem(Item.GoldenKey);
         Location.LongHall.AddItem(Item.DrinkMeBottle);
         Location.LongHall.AddItem(Item.EatMeCake);
-        Location.LongHall.AddItem(Item.Fan);
-        Location.LongHall.AddItem(Item.Glove);
+
 
         Location.RabbitsHouse.AddItem(Item.Mushroom);
     }
@@ -56,13 +55,13 @@ public class Item {
 
             Wonderland.AliceSize = Size.Short;
             Control.DropItem(item.Name);
-
+            Actions.DrinkInLongHall();
         } else if (item.Name.compareToIgnoreCase(Item.EatMeCake.Name) == 0) {
             System.out.println("You have eaten the cake. And now you're becoming very tall!");
 
             Wonderland.AliceSize = Size.Tall;
             Control.DropItem(item.Name);
-
+            Actions.EatCakeInLongHall();
         } else if (item.Name.compareToIgnoreCase(Item.Mushroom.Name) == 0) {
 
             if (Wonderland.AliceSize == Size.Normal) Wonderland.AliceSize = Size.Short;
