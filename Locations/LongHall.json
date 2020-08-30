@@ -2,9 +2,19 @@
     "Name": "Long Hall",
     "CardinalLocation": "North",
     "Texts": [
-        "You see a long hall with light hanging low from the ceiling and many doors.",
+        "You see a long hall with lights hanging low from the ceiling and many doors.",
+
         "You are in the Long Hall.",
-        "",
-        ""
+
+        "halfway across the hall, you see a glove and a hand fan. Nearer, see a golden key on top of a glass table. You try it on the doors but the key is too small.\nThen, you notice a very small door to the Northeast of the hall in which the key fits. But you can't fit through that door. You go back to the table and place the golden key on top of it. Dejected!\nIf I were you, I wouldn't leave a golden key on a table. It is a collectible item, you know.",
+
+        "At the centre of the table, you notice a bottle with the writting 'Drink Me' on it. Who goes around collecting random bottles to drink them?",
+
+        "At the bottom of the table, you also notice a cake written 'Eat Me' in candy. Yum! yum!",
+        "Yey! Now I can go to that beautiful garden to the Northeast",
+
+        "Oh no! You forgot the key. You try climbing up the table but you keep sliding off.\n You're stranded. But the cake is still an option, or you could be stuck there forver! Just saying.",
+
+        "You become so tall that you hit your head against the ceiling. '\tWhy did I eat this cake! ;-('\nYou start crying so much that your tears fill the long hall halfway through. Then, you start shrinking, you shrink so much that you are carried by your own sea of tears out of the Long Hall to a small shore outside where you meet other animal also carried by the small sea."
     ]
 }

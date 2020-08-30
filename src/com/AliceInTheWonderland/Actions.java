@@ -66,30 +66,47 @@ public class Actions {
     public static void LongHall() {
         Location location = Location.LongHall;
 
+        // on entering
         if (!location.Visited) System.out.println(location.Texts.get(0));
         else System.out.println(location.Texts.get(1));
 
         location.Visited = true;
 
-        Control.DisplayCollectibleItems(location, 0, "");
-        Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+        // collect golden key
+        Control.DisplayCollectibleItems(location, 0, location.Texts.get(2));
+
+        // drink me bottle and eat me cake
+        System.out.println(location.Texts.get(3));
+        Control.GetUserInput(location, PossibleActions.CollectItem);
+        location.Texts.get(4);
+        Control.GetUserInput(location, PossibleActions.CollectItem);
+
+
 
     }
 
     public static void DrinkInLongHall() {
         Location location = Location.LongHall;
-        Wonderland.AliceSize = Size.Short;
-        System.out.println(location.Texts.get(2));
+        System.out.println(location.Texts.get(5));
+
+        if (Inventory.HasItem(Item.GoldenKey)) {
+            // going through the small door
+            System.out.println(location.Texts.get(5));
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+
+        } else if (!Inventory.HasItem(Item.GoldenKey)) {
+            // she has to try the cake
+            System.out.println(location.Texts.get(6));
+            Control.GetUserInput(location, PossibleActions.CollectItem);
+        }
     }
 
     public static void EatCakeInLongHall() {
         // she becomes so tall, she cries, then she shrinks
         Location location = Location.LongHall;
-        System.out.println(location.Texts.get(3));
+        System.out.println(location.Texts.get(6));
 
         Wonderland.CriedAtLongHall = true;
-
-        Wonderland.CurrentLocation = Location.Shores;
 
         Wonderland.AliceSize = Size.Short;
         Control.GoToLocation(Location.Shores);
