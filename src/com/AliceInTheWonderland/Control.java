@@ -20,7 +20,7 @@ public class Control {
 
         if (text.isEmpty() || text.equalsIgnoreCase("skip")) {
             if (possibleActions == PossibleActions.CollectItem || possibleActions == PossibleActions.Global){
-                Wonderland.CurrentLocation.Items.remove(0);
+                if (Wonderland.CurrentLocation.Items.size() > 0) Wonderland.CurrentLocation.Items.remove(0);
             }
             return;
         }
@@ -28,70 +28,10 @@ public class Control {
 
         // dropping an item
         String[] tokens = text.split(" ");
-        if (tokens[0].equalsIgnoreCase("drop")) {
 
-            if (tokens.length == 1) {
-                System.out.println("\tTo drop an item, type 'drop' + the name of the item e.g. 'drop gem'");
-            } else if (Inventory.Count() == 0) {
-                System.out.println("\tYou do not have any item");
-            } else {
+        if (GlobalAction(tokens, location, possibleActions)) return;
 
-                for (Item i : Inventory.MyInventory()) {
-                    if (i.Name.equalsIgnoreCase(tokens[1])) DropItem(i.Name);
-                    GetUserInput(location, possibleActions);
-                    return;
-                }
-                System.out.println("\tYou do not have a " + tokens[1]);
-                ShowCollectedItems();
-            }
 
-            GetUserInput(location, possibleActions);
-            return;
-
-        } else if (tokens[0].equalsIgnoreCase("map") ||
-                (tokens.length == 2 && tokens[0].equalsIgnoreCase("show") && tokens[1].equalsIgnoreCase("map"))) {
-            DisplayMap();
-            GetUserInput(location, possibleActions);
-            return;
-        } else if (tokens[0].equalsIgnoreCase("instructions")) {
-            PostInstructionsMessage();
-            GetUserInput(location, possibleActions);
-            return;
-        } else if (tokens[0].equalsIgnoreCase("inventory") || tokens[0].equalsIgnoreCase("i")) {
-            ShowCollectedItems();
-            GetUserInput(location, possibleActions);
-            return;
-
-        } else if (tokens[0].equalsIgnoreCase("consume") || tokens[0].equalsIgnoreCase("eat")
-                || tokens[0].equalsIgnoreCase("drink")) {
-
-            if (tokens.length == 1) {
-                System.out.println("\tTo consume an item in your inventory you can type 'eat cake', 'drink bottle', 'eat mushroom' or 'consume mushroom'");
-            } else if (Inventory.Count() == 0) {
-                System.out.println("\tYou do not have any item. To consume an item, you have to collect it first.");
-            } else {
-
-                for (Item i : Inventory.MyInventory()) {
-                    if (i.Name.equalsIgnoreCase(tokens[1])) {
-
-                        if (!i.Edible) {
-                            System.out.println("\t" + i.Name + " is not edible");
-                            GetUserInput(location, possibleActions);
-                            return;
-                        } else {
-                            Item.ConsumeItem(i);
-                        }
-                    }
-                    GetUserInput(location, possibleActions);
-                    return;
-                }
-                System.out.println("\tYou do not have a " + tokens[1]);
-                ShowCollectedItems();
-            }
-
-            GetUserInput(location, possibleActions);
-            return;
-        }
 
         switch (possibleActions) {
             case AllowChangeOfLocation:
@@ -122,17 +62,87 @@ public class Control {
                     GetUserInput(location, possibleActions);
                     return;
                 }
-                int y = Integer.parseInt(tokens[1]);
-                Item item = location.Items.get(y);
-                if (Location.RabbitsHouse == location.RabbitsHouse) { // will be equal?
-                    GiveItem(item, Character.Rabbit, location);
-                } else if (Location.MarchHaresHouse == location.MarchHaresHouse) {
-                    GiveItem(item, Character.MarchHare, location);
+
+
+                for (Item i : Inventory.MyInventory()) {
+                    if (i.Name.equalsIgnoreCase(tokens[1])) {
+                        if (GiveItem(i)) System.out.println("Item accepted");
+                        else System.out.println("Item not accepted");
+                        break;
+                    }
                 }
-                break;
         }
     }
 
+    public static boolean GlobalAction(String[] tokens, Location location, PossibleActions possibleActions) {
+
+        if (tokens[0].equalsIgnoreCase("drop")) {
+
+            if (tokens.length == 1) {
+                System.out.println("\tTo drop an item, type 'drop' + the name of the item e.g. 'drop gem'");
+            } else if (Inventory.Count() == 0) {
+                System.out.println("\tYou do not have any item");
+            } else {
+
+                for (Item i : Inventory.MyInventory()) {
+                    if (i.Name.equalsIgnoreCase(tokens[1])) DropItem(i.Name);
+                    GetUserInput(location, possibleActions);
+                    return true;
+                }
+                System.out.println("\tYou do not have a " + tokens[1]);
+                ShowCollectedItems();
+            }
+
+            GetUserInput(location, possibleActions);
+            return true;
+
+        } else if (tokens[0].equalsIgnoreCase("map") ||
+                (tokens.length == 2 && tokens[0].equalsIgnoreCase("show") && tokens[1].equalsIgnoreCase("map"))) {
+            DisplayMap();
+            GetUserInput(location, possibleActions);
+            return true;
+
+        } else if (tokens[0].equalsIgnoreCase("instructions")) {
+            PostInstructionsMessage();
+            GetUserInput(location, possibleActions);
+            return true;
+
+        } else if (tokens[0].equalsIgnoreCase("inventory") || tokens[0].equalsIgnoreCase("i")) {
+            ShowCollectedItems();
+            GetUserInput(location, possibleActions);
+            return true;
+
+        } else if (tokens[0].equalsIgnoreCase("consume") || tokens[0].equalsIgnoreCase("eat")
+                || tokens[0].equalsIgnoreCase("drink")) {
+
+            if (tokens.length == 1) {
+                System.out.println("\tTo consume an item in your inventory you can type 'eat cake', 'drink bottle', 'eat mushroom' or 'consume mushroom'");
+            } else if (Inventory.Count() == 0) {
+                System.out.println("\tYou do not have any item. To consume an item, you have to collect it first.");
+            } else {
+
+
+                for (Item i : Inventory.MyInventory()) {
+                    if (i.Name.equalsIgnoreCase(tokens[1])) {
+                        if (!i.Edible) {
+                            System.out.println("\t" + i.Name + " is not edible");
+                            GetUserInput(location, possibleActions);
+                            return true;
+                        } else {
+                            Item.ConsumeItem(i);
+                        }
+                    }
+                }
+                System.out.println("\tYou do not have a " + tokens[1]);
+                ShowCollectedItems();
+            }
+
+            GetUserInput(location, possibleActions);
+            return true;
+        }
+
+        return false;
+    }
 
     public static void ShowCollectibleItems(Location location, int index, String Text) {
 
@@ -175,16 +185,16 @@ public class Control {
 
     }
 
-    public static boolean GiveItem(Item item, Character character, Location location) {
+    public static boolean GiveItem(Item item) {
         if (Inventory.HasItem(item)) {
             DropItem(item.Name);
 
-            if (character == Character.Rabbit && location == character.location) {
+            if (Wonderland.CurrentLocation == Location.RabbitsHouse && Wonderland.GamePlot == Plot.Rabbit && item == Item.GloveAndFan) {
                 Wonderland.PaidTheRabbit = true;
-            } else if (character == Character.MarchHare && location == character.location) {
+            } else if (Wonderland.CurrentLocation == Location.MarchHaresHouse && item == Item.Gem) {
                 Wonderland.PaidTheMarchHare = true;
-            } else if (character == Character.Dodo && location == character.location) {
-                Wonderland.PaidTheMarchHare = true;
+            } else if (Wonderland.CurrentLocation == Location.Shores && Wonderland.GamePlot == Plot.Rabbit) {
+                Wonderland.PaidPrizeForTheRace = true;
             }
             return true;
         }
