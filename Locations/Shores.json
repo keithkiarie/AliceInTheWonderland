@@ -2,7 +2,7 @@
     "Name": "Shores",
     "CardinalLocation": "Northwest",
     "Texts": [
-        "It's a bit weird thinking you're in the shores of the sea of your own tears.\nYou and all the animals in the shore are all soaking wet. Dodo organizes a Caucus race in which everybody wins to dry you up. After the race, Dodo and the animals demand that you give an item that they will present as a prize for winning the race. You should probably give Dodo something.",
+        "It's a bit weird thinking you're in the shores of the sea of your own tears.\nYou and all the animals in the shore are all soaking wet. Dodo organizes a Caucus race in which everybody wins to dry you up.\nAfter the race, Dodo and the animals demand that you give an item that they will present as a prize for winning the race.\nYou should probably give Dodo something.",
 
         "Welcome back to the shores of the sea of your own tears. We see it has not yet dried up. You better be tall enough to walk in there",
 
@@ -10,6 +10,6 @@
 
         "You did not have an item to give the animals as a prize and they stoned you! Better luck next time.",
 
-        "The animals are happy about the prize. They inform you that the white rabbit has a house somewhere on the map and if you are nice to him, he can tell you where Dinah went. Let's go look for the white rabbit's house"
+        "The animals are happy about the prize.\nThey inform you that the white rabbit has a house somewhere on the map and if you are nice to him, he can tell you where Dinah went.\nLet's go look for the white rabbit's house"
     ]
 }
