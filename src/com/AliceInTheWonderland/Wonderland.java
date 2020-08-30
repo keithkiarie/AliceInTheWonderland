@@ -48,6 +48,7 @@ public class Wonderland {
         Location.ConstructLocations();
         Item.PlaceItemsInLocations();
 
+        CurrentLocation = Location.DeepWell;
 
         ReadMetaTexts();
 
