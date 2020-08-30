@@ -13,9 +13,6 @@ enum PossibleActions {
 public class Control {
 
     public static void GetUserInput(Location location, PossibleActions possibleActions) {
-        if (possibleActions == PossibleActions.CollectItem) {
-
-        }
 
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
@@ -38,7 +35,8 @@ public class Control {
 
                 for (Item i : Inventory.MyInventory()) {
                     if (i.Name.equalsIgnoreCase(tokens[1])) DropItem(i.Name);
-                    break;
+                    GetUserInput(location, possibleActions);
+                    return;
                 }
                 System.out.println("\tYou do not have a " + tokens[1]);
                 ShowCollectedItems();
@@ -58,6 +56,35 @@ public class Control {
             return;
         } else if (tokens[0].equalsIgnoreCase("inventory") || tokens[0].equalsIgnoreCase("i")) {
             ShowCollectedItems();
+            GetUserInput(location, possibleActions);
+            return;
+        } else if (tokens[0].equalsIgnoreCase("consume") || tokens[0].equalsIgnoreCase("eat")
+                || tokens[0].equalsIgnoreCase("drink")) {
+
+            if (tokens.length == 1) {
+                System.out.println("\tTo consume an item in your inventory you can type 'eat cake', 'drink bottle', 'eat mushroom' or 'consume mushroom'");
+            } else if (Inventory.Count() == 0) {
+                System.out.println("\tYou do not have any item. To consume an item, you have to collect it first.");
+            } else {
+
+                for (Item i : Inventory.MyInventory()) {
+                    if (i.Name.equalsIgnoreCase(tokens[1])) {
+
+                        if (!i.Edible) {
+                            System.out.println("\t" + i.Name + " is not edible");
+                            GetUserInput(location, possibleActions);
+                            return;
+                        } else {
+                            Item.ConsumeItem(i);
+                        }
+                    }
+                    GetUserInput(location, possibleActions);
+                    return;
+                }
+                System.out.println("\tYou do not have a " + tokens[1]);
+                ShowCollectedItems();
+            }
+
             GetUserInput(location, possibleActions);
             return;
         }
@@ -165,11 +192,14 @@ public class Control {
 
         Item item = Wonderland.CurrentLocation.Items.get(0);
         if (Inventory.AddItem(item)) System.out.println("\t" + item.Name + " collected.");
-        else System.out.println("\tCould not collect item");
+        else {
+            System.out.println("\tCould not collect item. You do not have space for more items. Consider dropping one or two");
+            GetUserInput(Wonderland.CurrentLocation, PossibleActions.CollectItem);
+            return;
+        }
 
         Wonderland.CurrentLocation.Items.remove(0);
 
-        if (Inventory.Count() == 3) System.out.println("\tYou have collected 1 item. Your pocket fits 3.");
         if (Inventory.Count() == 2)
             System.out.println("\tYou have 2 items in you pocket. Space for only one more! If you wish, you can drop an item.");
         if (Inventory.Count() == 3) System.out.println("\tYou have 3 items. You do not have space for any more");
@@ -181,7 +211,7 @@ public class Control {
         for (Item i : Inventory.MyInventory()) {
             if (i.Name.compareToIgnoreCase(name) == 0) {
                 Inventory.DropItem(index);
-                System.out.println(i.Name + " dropped");
+                System.out.println("\t" + i.Name + " dropped");
                 return;
             }
             index++;
