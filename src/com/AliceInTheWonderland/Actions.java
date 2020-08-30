@@ -77,10 +77,12 @@ public class Actions {
 
     public static void DrinkInLongHall() {
         Location location = Location.LongHall;
+        Wonderland.AliceSize = Size.Short;
         System.out.println(location.Texts.get(2));
     }
 
     public static void EatCakeInLongHall() {
+        // she becomes so tall, she cries, then she shrinks
         Location location = Location.LongHall;
         System.out.println(location.Texts.get(3));
 
@@ -88,6 +90,7 @@ public class Actions {
 
         Wonderland.CurrentLocation = Location.Shores;
 
+        Wonderland.AliceSize = Size.Short;
         Control.GoToLocation(Location.Shores);
     }
 

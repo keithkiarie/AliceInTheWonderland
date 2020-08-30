@@ -14,6 +14,12 @@ enum Plot {
     Duchess, Rabbit
 }
 
+enum Size {
+    Short,
+    Tall,
+    Normal
+}
+
 public class Wonderland {
 
     public static Plot GamePlot;
@@ -21,6 +27,7 @@ public class Wonderland {
     public static boolean PaidTheRabbit = false;
     public static boolean PaidTheMarchHare = false;
     public static boolean TimeIsTakenBack = false;
+    public static Size AliceSize = Size.Normal;
 
     public static ArrayList<String>IntroductionTexts = new ArrayList<String>();
     public static ArrayList<String>InstructionsTexts = new ArrayList<String>();
