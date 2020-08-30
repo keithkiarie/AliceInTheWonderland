@@ -18,6 +18,7 @@
         "You can also drop an item you have collected.",
         "To check items you have, type 'show inventory', 'i' or 'show items'",
         "To give an item, type 'give gem', 'give glove' e.t.c.",
+        "If you do not wish to perform any action, simply press 'Enter'",
         "To see these instructions anywhere, type 'instructions'",
         "Remember to have fun in Wonderland, Alice!"
     ]
