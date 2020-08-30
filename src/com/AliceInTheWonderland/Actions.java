@@ -58,6 +58,7 @@ public class Actions {
 
         System.out.println(location.Texts.get(4));
 
+        // she falls in the long hall
         Control.GoToLocation(Location.LongHall);
     }
 
