@@ -110,10 +110,11 @@ public class Actions {
         Wonderland.ConsumptionAtLongHall = true;
 
         Location location = Location.LongHall;
-        System.out.println(location.Texts.get(5));
 
         if (Inventory.HasItem(Item.GoldenKey)) {
             // going through the small door
+            Location.LongHall.Exits.put(CardinalPoint.East, Location.Garden);
+
             System.out.println(location.Texts.get(5));
             Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
 
@@ -134,6 +135,8 @@ public class Actions {
         Wonderland.CriedAtLongHall = true;
 
         Wonderland.AliceSize = Size.Short;
+
+        Location.LongHall.Exits.put(CardinalPoint.West, Location.Shores);
         Control.GoToLocation(Location.Shores);
     }
 

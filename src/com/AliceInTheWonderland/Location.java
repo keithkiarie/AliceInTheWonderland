@@ -75,8 +75,8 @@ public class Location {
         Location.DeepWell.Exits.put(CardinalPoint.North, Location.LongHall);
 
         Location.LongHall.Entries.put(CardinalPoint.South, Location.SafeRoom);
-        Location.LongHall.Exits.put(CardinalPoint.West, Location.Shores);
-        Location.LongHall.Exits.put(CardinalPoint.East, Location.Garden);
+
+
 
         Location.Garden.Entries.put(CardinalPoint.West, Location.LongHall);
         Location.Garden.Entries.put(CardinalPoint.South, Location.Courtroom);
@@ -105,24 +105,24 @@ public class Location {
 
     public static CardinalPoint TextToCardinalPoint(String cardinalPoint) {
 
-        switch (cardinalPoint) {
-            case "North":
+        switch (cardinalPoint.toLowerCase()) {
+            case "north":
                 return CardinalPoint.North;
-            case "Northeast":
+            case "northeast":
                 return CardinalPoint.Northeast;
-            case "East":
+            case "east":
                 return CardinalPoint.East;
-            case "Southeast":
+            case "southeast":
                 return CardinalPoint.Southeast;
-            case "South":
+            case "south":
                 return CardinalPoint.South;
-            case "Southwest":
+            case "southwest":
                 return CardinalPoint.Southwest;
-            case "West":
+            case "west":
                 return CardinalPoint.West;
-            case "Northwest":
+            case "northwest":
                 return CardinalPoint.Northwest;
-            case "Central":
+            case "central":
                 return CardinalPoint.Central;
         }
 
