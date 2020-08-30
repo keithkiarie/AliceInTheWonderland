@@ -24,8 +24,11 @@ public class Wonderland {
 
     public static Plot GamePlot;
     public static boolean CriedAtLongHall = false;
+
     public static boolean PaidTheRabbit = false;
     public static boolean PaidTheMarchHare = false;
+    public static boolean PaidPrizeForTheRace = false;
+
     public static boolean TimeIsTakenBack = false;
     public static Size AliceSize = Size.Normal;
 

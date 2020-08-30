@@ -7,7 +7,7 @@ public class Character {
     public Location location;
     public boolean RequiresItem;
 
-    public static Character Rabbit, MarchHare, Queen, King, Gardeners, Duchess;
+    public static Character Rabbit, MarchHare, Queen, King, Gardeners, Duchess, Dodo;
 
     public static void MakeCharacters() {
         Rabbit = new Character("Rabbit", Location.RabbitsHouse, true);
@@ -16,6 +16,7 @@ public class Character {
         King = new Character("King", Location.Courtroom, false);
         Gardeners = new Character("King", Location.Garden, false);
         Duchess = new Character("Duchess", Location.DuchessHouse, false);
+        Dodo = new Character("Dodo", Location.Shores, true);
     }
 
     Character(String Name, Location location, boolean RequiresItem) {

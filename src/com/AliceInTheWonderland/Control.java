@@ -63,6 +63,8 @@ public class Control {
                 Wonderland.PaidTheRabbit = true;
             } else if (character == Character.MarchHare && location == character.location) {
                 Wonderland.PaidTheMarchHare = true;
+            } else if (character == Character.Dodo && location == character.location) {
+                Wonderland.PaidTheMarchHare = true;
             }
             return true;
         }

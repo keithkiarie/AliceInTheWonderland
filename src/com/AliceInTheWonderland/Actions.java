@@ -131,25 +131,33 @@ public class Actions {
         Location location = Location.Shores;
 
         if (!location.Visited && !Location.Garden.Visited) {
+            location.Visited = true;
+
             // first time visiting and the plot is around the white rabbit
             Wonderland.GamePlot = Plot.Rabbit;
             System.out.println(location.Texts.get(0));
 
+            // prize for the contest
+            if (Inventory.Count() == 0) Wonderland.GameOver(location.Texts.get(3));
             Control.GetUserInput(location, PossibleActions.GiveItem);
-            if (Inventory.Count() == 0) Wonderland.GameOver("You did not have an item to give the animals and they stoned you");
+
+            if (Wonderland.PaidPrizeForTheRace) {
+                Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+            }
 
         } else if (location.Visited && Wonderland.CriedAtLongHall) {
             // visiting here again and she hand cried before
             System.out.println(location.Texts.get(1));
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
 
         } else  {
+            location.Visited = true;
+
             System.out.println(location.Texts.get(2));
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
         }
 
-        location.Visited = true;
 
-        Control.DisplayCollectibleItems(location, 0, "");
-        Control.GetUserInput(location, PossibleActions.CollectItem);
     }
 
     public static void RabbitsHouse() {
