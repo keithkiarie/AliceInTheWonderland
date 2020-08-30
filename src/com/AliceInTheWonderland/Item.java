@@ -49,10 +49,14 @@ public class Item {
         if (!Inventory.HasItem(item)) return;
 
         if (item.Name.compareToIgnoreCase(Item.DrinkMeBottle.Name) == 0) {
+            System.out.println("You have drank from the bottle. And now you're becoming very short!");
+
             Wonderland.AliceSize = Size.Short;
             Control.DropItem(item.Name);
 
         } else if (item.Name.compareToIgnoreCase(Item.EatMeCake.Name) == 0) {
+            System.out.println("You have eaten the cake. And now you're becoming very tall!");
+
             Wonderland.AliceSize = Size.Tall;
             Control.DropItem(item.Name);
 
@@ -61,6 +65,14 @@ public class Item {
             if (Wonderland.AliceSize == Size.Normal) Wonderland.AliceSize = Size.Short;
             else if (Wonderland.AliceSize == Size.Tall) Wonderland.AliceSize = Size.Short;
             else if (Wonderland.AliceSize == Size.Short) Wonderland.AliceSize = Size.Tall;
+
+            if (Wonderland.AliceSize == Size.Short) {
+                System.out.println("You have taken a bite. And now you're very short. I wonder what I'll become if I take another bite");
+            }
+            else if (Wonderland.AliceSize == Size.Short) {
+                System.out.println("You have taken a bite. And now you're very tall.");
+                System.out.println("I wonder what I'll become if I take another bite");
+            }
         }
     }
 }
