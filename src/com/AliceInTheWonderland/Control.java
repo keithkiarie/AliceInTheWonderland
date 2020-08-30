@@ -12,12 +12,98 @@ enum PossibleActions {
 
 public class Control {
 
-    // called from a location (in Actions). Takes in a list of items available in that room
     public static void GetUserInput(Location location, PossibleActions possibleActions) {
+        if (possibleActions == PossibleActions.CollectItem) {
 
+        }
+
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
+
+        if (text.isEmpty() || text.equalsIgnoreCase("skip")) {
+            if (possibleActions == PossibleActions.CollectItem) Wonderland.CurrentLocation.Items.remove(0);
+            return;
+        }
+
+
+        // dropping an item
+        String[] tokens = text.split(" ");
+        if (tokens[0].equalsIgnoreCase("drop")) {
+
+            if (tokens.length == 1) {
+                System.out.println("\tTo drop an item, type 'drop' + the name of the item e.g. 'drop gem'");
+            } else if (Inventory.Count() == 0) {
+                System.out.println("\tYou do not have any item");
+            } else {
+
+                for (Item i : Inventory.MyInventory()) {
+                    if (i.Name.equalsIgnoreCase(tokens[1])) DropItem(i.Name);
+                    break;
+                }
+                System.out.println("\tYou do not have a " + tokens[1]);
+                ShowCollectedItems();
+            }
+
+            GetUserInput(location, possibleActions);
+            return;
+
+        } else if (tokens[0].equalsIgnoreCase("map") ||
+                (tokens.length == 2 && tokens[0].equalsIgnoreCase("show") && tokens[1].equalsIgnoreCase("map"))) {
+            DisplayMap();
+            GetUserInput(location, possibleActions);
+            return;
+        } else if (tokens[0].equalsIgnoreCase("instructions")) {
+            PostInstructionsMessage();
+            GetUserInput(location, possibleActions);
+            return;
+        } else if (tokens[0].equalsIgnoreCase("inventory") || tokens[0].equalsIgnoreCase("i")) {
+            ShowCollectedItems();
+            GetUserInput(location, possibleActions);
+            return;
+        }
+
+        switch (possibleActions) {
+            case AllowChangeOfLocation:
+                if (!tokens[0].equalsIgnoreCase("go")) {
+                    System.out.println("You need to choose a place to go...");
+                    GetUserInput(location, possibleActions);
+                    return;
+                }
+
+                CardinalPoint p = location.TextToCardinalPoint(tokens[1]);
+                Location l = location.Exits.get(p);
+                GoToLocation(l);
+                break;
+
+            case CollectItem:
+                if (!tokens[0].equalsIgnoreCase("collect")) {
+                    System.out.println("\tTo collect an item, type 'collect'");
+                    GetUserInput(location, possibleActions);
+                    return;
+                }
+
+                CollectItem();
+                break;
+
+            case GiveItem:
+                if (!tokens[0].equalsIgnoreCase("give")) {
+                    System.out.println("To give an item, type 'give' + the name of the item");
+                    GetUserInput(location, possibleActions);
+                    return;
+                }
+                int y = Integer.parseInt(tokens[1]);
+                Item item = location.Items.get(y);
+                if (Location.RabbitsHouse == location.RabbitsHouse) { // will be equal?
+                    GiveItem(item, Character.Rabbit, location);
+                } else if (Location.MarchHaresHouse == location.MarchHaresHouse) {
+                    GiveItem(item, Character.MarchHare, location);
+                }
+                break;
+        }
     }
 
-    public static void DisplayCollectibleItems(Location location, int index, String Text) {
+
+    public static void ShowCollectibleItems(Location location, int index, String Text) {
 
     }
 
@@ -36,22 +122,25 @@ public class Control {
             if (i.Name.compareToIgnoreCase("map") == 0) HasMap = true;
         }
 
-        if (!HasMap) {
-            System.out.println("Damn it! I forgot to collect the map.");
+        if (!HasMap && Wonderland.CurrentLocation != Location.DeepWell) {
+            System.out.println("\tDamn it! I forgot to collect the map.");
+            return;
+        } else if (!HasMap && Wonderland.CurrentLocation == Location.DeepWell) {
+            System.out.println("\tWhere's my map! I thought I had carried one! Too bad!.");
             return;
         }
         System.out.println("\nMap\n");
-        System.out.println("Current location: " + Wonderland.CurrentLocation.Name);
-        System.out.println("Current cardinal location: " + Wonderland.CurrentLocation.CardinalLocation);
+        System.out.println("\tCurrent location: " + Wonderland.CurrentLocation.Name);
+        System.out.println("\tCurrent cardinal location: " + Wonderland.CurrentLocation.CardinalLocation);
 
-        System.out.println("Long Hall: North");
-        System.out.println("Garden: Northeast");
-        System.out.println("Courtroom: East");
-        System.out.println("March Hare's house: Southeast");
-        System.out.println("Duchess' house: South");
-        System.out.println("Croquet playground: Southwest");
-        System.out.println("Rabbit's house: West");
-        System.out.println("Shores: Northwest");
+        System.out.println("\t\tLong Hall: North");
+        System.out.println("\t\tGarden: Northeast");
+        System.out.println("\t\tCourtroom: East");
+        System.out.println("\t\tMarch Hare's house: Southeast");
+        System.out.println("\t\tDuchess' house: South");
+        System.out.println("\t\tCroquet playground: Southwest");
+        System.out.println("\t\tRabbit's house: West");
+        System.out.println("\t\tShores: Northwest");
 
     }
 
@@ -72,39 +161,40 @@ public class Control {
     }
 
 
+    public static void CollectItem() {
 
-    public static void CollectItem(Item item) {
-        if (Inventory.AddItem(item)) System.out.println(item.Name + " collected.");
-        else System.out.println("Could not collect item");
+        Item item = Wonderland.CurrentLocation.Items.get(0);
+        if (Inventory.AddItem(item)) System.out.println("\t" + item.Name + " collected.");
+        else System.out.println("\tCould not collect item");
 
-        if (Inventory.Count() == 3) System.out.println("You have collected 1 item. Your pocket fits 3.");
-        if (Inventory.Count() == 2) System.out.println("You have 2 items in you pocket. Space for only one more! If you wish, you can drop an item.");
-        if (Inventory.Count() == 3) System.out.println("You have 3 items. You do not have space for any more");
+        Wonderland.CurrentLocation.Items.remove(0);
+
+        if (Inventory.Count() == 3) System.out.println("\tYou have collected 1 item. Your pocket fits 3.");
+        if (Inventory.Count() == 2)
+            System.out.println("\tYou have 2 items in you pocket. Space for only one more! If you wish, you can drop an item.");
+        if (Inventory.Count() == 3) System.out.println("\tYou have 3 items. You do not have space for any more");
     }
 
     public static void DropItem(String name) {
-        if (Inventory.Count() == 0) {
-            System.out.println("You have no items in your inventory");
-        } else {
-            int index = 0;
-            for (Item i : Inventory.MyInventory()) {
-                if (i.Name.compareToIgnoreCase(name) == 0) {
-                    Inventory.DropItem(index);
-                    return;
-                }
-                index++;
+
+        int index = 0;
+        for (Item i : Inventory.MyInventory()) {
+            if (i.Name.compareToIgnoreCase(name) == 0) {
+                Inventory.DropItem(index);
+                System.out.println(i.Name + " dropped");
+                return;
             }
+            index++;
         }
 
-        System.out.println("You do not have a " + name);
     }
 
     public static void ShowCollectedItems() {
-        if (Inventory.Count() == 0) System.out.println("0 collected items");
+        if (Inventory.Count() == 0) System.out.println("\n\tYou have 0 collected items");
         else {
-            System.out.println("Collected items:");
+            System.out.println("\n\tCollected items:");
             for (Item i : Inventory.MyInventory()) {
-                System.out.println("\t" + i.Name);
+                System.out.println("\t\t" + i.Name);
             }
         }
     }
