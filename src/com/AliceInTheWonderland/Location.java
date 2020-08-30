@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.json.*;
 
 enum CardinalPoint {
-    North, Northeast, East, Southeast, South, Southwest, West, Northwest, Central, Up
+    North, Northeast, East, Southeast, South, Southwest, West, Northwest, Central
 }
 
 public class Location {
@@ -72,7 +72,7 @@ public class Location {
 
 
         // Entries and Exits
-        Location.DeepWell.Exits.put(CardinalPoint.Up, Location.LongHall);
+        Location.DeepWell.Exits.put(CardinalPoint.North, Location.LongHall);
 
         Location.LongHall.Entries.put(CardinalPoint.South, Location.SafeRoom);
         Location.LongHall.Exits.put(CardinalPoint.West, Location.Shores);
@@ -124,8 +124,6 @@ public class Location {
                 return CardinalPoint.Northwest;
             case "Central":
                 return CardinalPoint.Central;
-            case "Up":
-                return CardinalPoint.Up;
         }
 
         throw new IllegalArgumentException();
