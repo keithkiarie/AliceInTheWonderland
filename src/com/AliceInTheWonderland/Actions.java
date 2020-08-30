@@ -37,17 +37,25 @@ public class Actions {
     public static void DeepWell() {
         Location location = Location.DeepWell;
 
+        // introduction to deep well
         System.out.println(location.Texts.get(0));
 
         location.Visited = true;
 
+        // she sees a jar
         Control.DisplayCollectibleItems(location, 0, location.Texts.get(1));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
-        Control.DisplayCollectibleItems(location, 1, location.Texts.get(2));
+        if (Inventory.HasItem(Item.Jar)) {
+            Control.DisplayCollectibleItems(location, 1, location.Texts.get(2));
+            Control.GetUserInput(location, PossibleActions.CollectItem);
+        }
+
+        // she sees map hanging on the wall
+        Control.DisplayCollectibleItems(location, 2, location.Texts.get(3));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
-        System.out.println(location.Texts.get(3));
+
         System.out.println(location.Texts.get(4));
 
         Control.GoToLocation(Location.LongHall);
