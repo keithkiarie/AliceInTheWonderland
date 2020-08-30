@@ -36,6 +36,7 @@ public class Wonderland {
     Wonderland() {
         Item.MakeItems();
         Location.ConstructLocations();
+        Item.PlaceItemsInLocations();
 
 
         ReadMetaTexts();

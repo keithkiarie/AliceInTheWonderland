@@ -24,8 +24,6 @@ public class Item {
         Item.Fan = new Item("Hand fan", new ArrayList<Character>());
 
 
-        PlaceItemsInLocations();
-
         // characters who can accept an item
         Item.Gem.CharactersWhoAccept.add(Character.MarchHare);
         Item.Glove.CharactersWhoAccept.add(Character.Rabbit);
