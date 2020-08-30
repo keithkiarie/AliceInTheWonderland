@@ -20,7 +20,7 @@ public class Control {
         String text = sc.nextLine();
 
         if (text.isEmpty() || text.equalsIgnoreCase("skip")) {
-            if (possibleActions == PossibleActions.CollectItem || possibleActions == PossibleActions.Global){
+            if (possibleActions == PossibleActions.CollectItem || possibleActions == PossibleActions.Global) {
                 if (Wonderland.CurrentLocation.Items.size() > 0) Wonderland.CurrentLocation.Items.remove(0);
             }
             return;
@@ -33,7 +33,6 @@ public class Control {
         if (GlobalAction(tokens, location, possibleActions)) return;
 
 
-
         switch (possibleActions) {
             case AllowChangeOfLocation:
                 if (!tokens[0].equalsIgnoreCase("go")) {
@@ -42,9 +41,22 @@ public class Control {
                     return;
                 }
 
-                CardinalPoint p = location.TextToCardinalPoint(tokens[1]);
-                Location l = location.Exits.get(p);
-                GoToLocation(l);
+
+                try {
+                    CardinalPoint p = location.TextToCardinalPoint(tokens[1]);
+                    Location l = location.Exits.get(p);
+
+                    GoToLocation(l);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid direction. Navigate by using compass directions e.g. 'Go North', 'Go Southeast' e.t.c.");
+                    GetUserInput(location, possibleActions);
+                    return;
+                } catch (NullPointerException e) {
+                    System.out.println("There is no path that way.");
+                    GetUserInput(location, possibleActions);
+                    return;
+                }
+
                 break;
 
             case CollectItem:
@@ -186,9 +198,11 @@ public class Control {
         System.out.println("\t\tShores: Northwest");
         System.out.println("\t\tSafe Room: Centre");
 
-        System.out.println("\n\tExits:");
-        for (Map.Entry<CardinalPoint, Location> Exit : Wonderland.CurrentLocation.Exits.entrySet()) {
-            System.out.println("\t\t" + Exit.getValue().Name);
+        if (Wonderland.CurrentLocation.Exits.size() != 0) {
+            System.out.println("\n\tExits:");
+            for (Map.Entry<CardinalPoint, Location> Exit : Wonderland.CurrentLocation.Exits.entrySet()) {
+                System.out.println("\t\t" + Exit.getValue().Name);
+            }
         }
     }
 
@@ -252,44 +266,48 @@ public class Control {
         }
     }
 
-    public static void GoToLocation(Location location) {
-        switch (location.id) {
-            case 1:
-                Wonderland.CurrentLocation = Location.LongHall;
-                Actions.LongHall();
-                break;
-            case 2:
-                Wonderland.CurrentLocation = Location.Garden;
-                Actions.Garden();
-                break;
-            case 3:
-                Actions.Courtroom();
-                Wonderland.CurrentLocation = Location.Courtroom;
-                break;
-            case 4:
-                Wonderland.CurrentLocation = Location.MarchHaresHouse;
-                Actions.MarchHaresHouse();
-                break;
-            case 5:
-                Wonderland.CurrentLocation = Location.DuchessHouse;
-                Actions.DuchessHouse();
-                break;
-            case 6:
-                Wonderland.CurrentLocation = Location.CroquetPlayground;
-                Actions.CroquetPlayground();
-                break;
-            case 7:
-                Wonderland.CurrentLocation = Location.RabbitsHouse;
-                Actions.RabbitsHouse();
-                break;
-            case 8:
-                Wonderland.CurrentLocation = Location.Shores;
-                Actions.Shores();
-                break;
-            case 9:
-                Wonderland.CurrentLocation = Location.SafeRoom;
-                Actions.SafeRoom();
-                break;
+    public static void GoToLocation(Location location) throws NullPointerException {
+        try {
+            switch (location.id) {
+                case 1:
+                    Wonderland.CurrentLocation = Location.LongHall;
+                    Actions.LongHall();
+                    break;
+                case 2:
+                    Wonderland.CurrentLocation = Location.Garden;
+                    Actions.Garden();
+                    break;
+                case 3:
+                    Actions.Courtroom();
+                    Wonderland.CurrentLocation = Location.Courtroom;
+                    break;
+                case 4:
+                    Wonderland.CurrentLocation = Location.MarchHaresHouse;
+                    Actions.MarchHaresHouse();
+                    break;
+                case 5:
+                    Wonderland.CurrentLocation = Location.DuchessHouse;
+                    Actions.DuchessHouse();
+                    break;
+                case 6:
+                    Wonderland.CurrentLocation = Location.CroquetPlayground;
+                    Actions.CroquetPlayground();
+                    break;
+                case 7:
+                    Wonderland.CurrentLocation = Location.RabbitsHouse;
+                    Actions.RabbitsHouse();
+                    break;
+                case 8:
+                    Wonderland.CurrentLocation = Location.Shores;
+                    Actions.Shores();
+                    break;
+                case 9:
+                    Wonderland.CurrentLocation = Location.SafeRoom;
+                    Actions.SafeRoom();
+                    break;
+            }
+        } catch (NullPointerException e) {
+            throw e;
         }
     }
 
