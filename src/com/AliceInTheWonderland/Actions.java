@@ -11,28 +11,10 @@ public class Actions {
     public static JSONObject ActionsJSON;
 
 
-    public static void ReadActionsFile() throws IOException {
-        String FileContents = "";
 
-        try {
-            FileReader fr = new FileReader("Actions.json");
-            int i;
-            while ((i = fr.read()) != -1)
-                FileContents += (char) i;
-            fr.close();
-        } catch (IOException e) {
-            throw e;
-        }
-
-        ActionsJSON = new JSONObject(FileContents);
-    }
 
     Actions() {
-        try {
-            ReadActionsFile();
-        } catch (IOException e) {
-            System.out.println("Error accessing Actions file");
-        }
+
     }
 
 
