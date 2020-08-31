@@ -2,9 +2,9 @@
     "Introduction": [
         "Press 'Enter' to continue.",
         "\nOn a fine evening, you are lying beside your sister while she is reading a long boring book.",
-        "Suddenly, a white rabbit with long coat runs by you!",
+        "Suddenly, a white rabbit with pink eyes and a long coat runs by you!",
         "\t'Was that a rabbit wearing a coat!', you wonder.",
-        "Your cat Dinah also comes and runs by you going after the rabbit",
+        "Your cat Dinah also comes and runs by you going after the rabbit!!",
         "You quickly go after the two to see what exactly is happening.",
         "The rabbit goes into a rabbit hole and so does your cat, you quickly follow without thinking.",
         "\nWelcome to Wonderland, Alice!"
@@ -14,7 +14,7 @@
         "\t\tTo skip this tutorial, type 'skip' or 's'.",
         "\t\tTo move in any direction, simply type it e.g. 'Go North', 'Go South', 'Go Northwest', 'Go NW' e.t.c. \n\t\tTo see the map, type 'see map', 'show map' or simply 'map'",
         "\t\tMovement is relative to your location, e.g. if you're in the South and you say 'go east',\n\t\tyou'll be in the Southeast\n\t\tUnless you know this place very well, you'll want to grab a map when you see one",
-        "\t\tTo collect an item, simply type 'collect'.\n\t\tTo consume an item, you first need to collect it. Then, type 'drink', 'eat mushroom', 'eat cake' e.t.c\n\t\tYou can also drop an item you have collected. Type 'drop gem', 'drop map' e.t.c.",
+        "\t\tTo collect an item, simply type 'collect'.\n\t\tTo consume an item, you first need to collect it. Then, type 'drink bottle', 'eat mushroom', 'eat cake' e.t.c\n\t\tYou can also drop an item you have collected. Type 'drop gem', 'drop map' e.t.c.",
         "\t\tTo check items you have, type 'show inventory', 'i' or 'show items'.\n\t\tTo give an item, type 'give gem', 'give glove' e.t.c.",
         "\t\tThere is a Safe Room which stores one item. You can drop an item there and pick it up later.",
         "\t\tIf you do not wish to perform any action, simply press 'Enter'",
