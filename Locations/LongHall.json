@@ -6,7 +6,7 @@
 
         "You are in the Long Hall.",
 
-        "halfway across the hall, you see a glove and a hand fan. Nearer, see a golden key on top of a glass table. You try it on the doors but the key is too small.\nThen, you notice a very small door to the East of the hall in which the key fits. But you can't fit through that door. You go back to the table and place the golden key on top of it. Dejected!\nIf I were you, I wouldn't leave a golden key on a table. It is a collectible item, you know.",
+        "halfway across the hall, you see a glove and a hand fan. Nearer, you see a golden key on top of a glass table. You try it on the doors but the key is too small.\nThen, you notice a very small door to the East of the hall in which the key fits. But you can't fit through that door. You go back to the table and place the golden key on top of it. Dejected!\nIf I were you, I wouldn't leave a golden key on a table. It is a collectible item, you know.",
 
         "At the centre of the table, you notice a bottle with the writting 'Drink Me' on it. Who goes around collecting random bottles to drink them?",
 
@@ -22,6 +22,8 @@
 
         "We're not gonna sit here all day! Try consuming what is available and see what goes. There is a bottle on top of the table.",
 
-        "and a cake."
+        "and a cake.",
+
+        "Here's the rabbit's lost items. Type 'collect' to pick them."
     ]
 }

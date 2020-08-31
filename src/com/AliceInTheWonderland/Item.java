@@ -23,7 +23,7 @@ public class Item {
         Item.DrinkMeBottle = new Item("Bottle", new ArrayList<Character>(), true);
         Item.EatMeCake = new Item("Cake", new ArrayList<Character>(), true);
         Item.Mushroom = new Item("Mushroom", new ArrayList<Character>(), true);
-        Item.GloveAndFan = new Item("Glove and Hand Fan", new ArrayList<Character>(), false);
+        Item.GloveAndFan = new Item("Both", new ArrayList<Character>(), false);
 
 
         // characters who can accept an item

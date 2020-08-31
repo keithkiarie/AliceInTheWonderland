@@ -36,7 +36,7 @@ public class Control {
 
         switch (possibleActions) {
             case YesOrNo:
-                if (!tokens[0].equalsIgnoreCase("yes") ||tokens[0].equalsIgnoreCase("no") ) {
+                if (!tokens[0].equalsIgnoreCase("yes") && !tokens[0].equalsIgnoreCase("no")) {
                     System.out.println("\tAnswer with a 'yes' or 'no'.");
                     GetUserInput(location, possibleActions);
                     return;
