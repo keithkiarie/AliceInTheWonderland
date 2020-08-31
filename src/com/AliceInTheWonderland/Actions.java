@@ -85,8 +85,10 @@ public class Actions {
         System.out.println(location.Texts.get(3));
         Control.GetUserInput(location, PossibleActions.CollectItem);
 
-        System.out.println(location.Texts.get(4));
-        Control.GetUserInput(location, PossibleActions.CollectItem);
+        if (!Wonderland.ConsumptionAtLongHall) {
+            System.out.println(location.Texts.get(4));
+            Control.GetUserInput(location, PossibleActions.CollectItem);
+        }
 
         if (!Wonderland.ConsumptionAtLongHall) {
             if (Location.LongHall.Items.size() == 0 && !Inventory.HasItem(Item.DrinkMeBottle) && !Inventory.HasItem(Item.EatMeCake)) {
@@ -192,45 +194,62 @@ public class Actions {
     public static void RabbitsHouse() {
         Location location = Location.RabbitsHouse;
 
-        if (!location.Visited && Wonderland.GamePlot == Plot.Rabbit) {
-            Location.LongHall.AddItem(Item.GloveAndFan);
-
+        if (!location.Visited) {
             System.out.println(location.Texts.get(0));
             Control.GetUserInput(location, PossibleActions.CollectItem); // mushroom
+        }
+
+        if (!location.Visited && Wonderland.GamePlot == Plot.Rabbit) {
+            Location.LongHall.AddItem(Item.GloveAndFan);
 
             System.out.println(location.Texts.get(1)); //he gives you instructions
             Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
 
         } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && !Wonderland.PaidTheRabbit) {
             System.out.println(location.Texts.get(2));
-            Control.GetUserInput(location, PossibleActions.CollectItem); // mushroom
 
-            System.out.println(location.Texts.get(1)); //he gives you instructions
+            if (!Inventory.HasItem(Item.GloveAndFan)) {
+                System.out.println(location.Texts.get(5));
+                Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+
+            } else if (Inventory.HasItem(Item.GloveAndFan)) {
+                System.out.println(location.Texts.get(2));
+                Control.GetUserInput(location, PossibleActions.GiveItem);
+            }
+
+            if (Wonderland.PaidTheRabbit && !Wonderland.TimeIsTakenBack) {
+                System.out.println(location.Texts.get(3));
+                Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+            }
+
+
+        } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && Wonderland.PaidTheRabbit && Wonderland.TimeIsTakenBack) {
+            Wonderland.GameOver(location.Texts.get(4));
             Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
 
-        } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && Wonderland.TimeIsTakenBack) {
-            System.out.println(location.Texts.get(1));
-
-        } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && !Wonderland.TimeIsTakenBack) {
-            System.out.println(location.Texts.get(2));
-
-        } else if (Wonderland.GamePlot == Plot.Duchess) {
+        } else if (location.Visited && Wonderland.GamePlot == Plot.Rabbit && !Wonderland.TimeIsTakenBack && Wonderland.PaidTheRabbit) {
             System.out.println(location.Texts.get(3));
+            Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
+
+        } else  {
+            System.out.println(location.Texts.get(5));
         }
 
         location.Visited = true;
-
-        Control.GetUserInput(location, PossibleActions.CollectItem);
     }
 
     public static void MarchHaresHouse() {
         Location location = Location.MarchHaresHouse;
 
-        if (!location.Visited) System.out.println(location.Texts.get(0));
-        else System.out.println(location.Texts.get(1));
+        if ((Wonderland.GamePlot == Plot.Rabbit && Location.RabbitsHouse.Visited)
+                || (Wonderland.GamePlot == Plot.Duchess && Location.DuchessHouse.Visited) && !Wonderland.TimeIsTakenBack) {
+            System.out.println(location.Texts.get(0));
+            Wonderland.TimeIsTakenBack = true;
+        } else {
+            System.out.println(location.Texts.get(1));
+        }
 
         location.Visited = true;
-        Wonderland.PaidTheMarchHare = true;
 
         Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
@@ -255,11 +274,12 @@ public class Actions {
 
         if (!location.Visited && Wonderland.GamePlot == Plot.Duchess) {
             System.out.println(location.Texts.get(0));
-        } else if (Wonderland.GamePlot == Plot.Rabbit || !Wonderland.PaidTheMarchHare) {
-            System.out.println(location.Texts.get(1));
-        } else {
+        } else if ((Wonderland.GamePlot == Plot.Duchess || !Wonderland.TimeIsTakenBack) && !Location.CroquetPlayground.Visited) {
             System.out.println(location.Texts.get(2));
+        } else {
+            System.out.println(location.Texts.get(1));
         }
+        location.Visited = true;
         Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 
@@ -276,11 +296,12 @@ public class Actions {
             } else {
                 Wonderland.GameOver(location.Texts.get(3));
             }
-        }
-        else {
+        } else {
             System.out.println(location.Texts.get(1));
             Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
         }
+
+        location.Visited = true;
     }
 
     public static void SafeRoom() {
@@ -294,10 +315,12 @@ public class Actions {
             if (location.Items.size() == 0) {
                 System.out.println("\tThere is no stored item.");
             } else {
-                System.out.println("You have stored a " + location.Items.get(0));
+                System.out.println("You have stored a " + location.Items.get(0).Name);
+                System.out.println("If you wish to collect it type 'collect " + location.Items.get(0).Name + "'. If you don't press 'Enter'.");
                 Control.GetUserInput(location, PossibleActions.CollectItem);
             }
         }
+        System.out.println("You can drop an item or just continue your journey:");
         Control.GetUserInput(location, PossibleActions.AllowChangeOfLocation);
     }
 }

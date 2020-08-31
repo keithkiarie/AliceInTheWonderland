@@ -77,7 +77,6 @@ public class Location {
         Location.LongHall.Entries.put(CardinalPoint.South, Location.SafeRoom);
 
 
-
         Location.Garden.Entries.put(CardinalPoint.West, Location.LongHall);
         Location.Garden.Entries.put(CardinalPoint.South, Location.Courtroom);
         Location.Garden.Exits.put(CardinalPoint.Southwest, Location.SafeRoom);
@@ -100,6 +99,10 @@ public class Location {
 
         Location.Shores.Entries.put(CardinalPoint.East, Location.LongHall);
         Location.Shores.Exits.put(CardinalPoint.South, Location.RabbitsHouse);
+
+        Location.SafeRoom.Exits.put(CardinalPoint.North, Location.LongHall);
+        Location.SafeRoom.Exits.put(CardinalPoint.South, Location.DuchessHouse);
+        Location.SafeRoom.Exits.put(CardinalPoint.East, Location.Courtroom);
     }
 
 

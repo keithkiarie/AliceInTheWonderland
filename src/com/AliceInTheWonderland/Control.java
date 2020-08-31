@@ -112,11 +112,12 @@ public class Control {
             } else if (Inventory.Count() == 0) {
                 System.out.println("\tYou do not have any item");
             } else {
-
                 for (Item i : Inventory.MyInventory()) {
-                    if (i.Name.equalsIgnoreCase(tokens[1])) DropItem(i.Name);
-                    GetUserInput(location, possibleActions);
-                    return true;
+                    if (i.Name.equalsIgnoreCase(tokens[1])) {
+                        DropItem(i.Name);
+                        GetUserInput(location, possibleActions);
+                        return true;
+                    }
                 }
                 System.out.println("\tYou do not have a " + tokens[1]);
                 ShowCollectedItems();
@@ -156,13 +157,13 @@ public class Control {
                         if (!i.Edible) {
                             System.out.println("\t" + i.Name + " is not edible");
                             GetUserInput(location, possibleActions);
-                            return true;
                         } else {
                             Item.ConsumeItem(i);
-                            break;
                         }
+                        return true;
                     }
                 }
+
                 System.out.println("\tYou do not have a " + tokens[1]);
                 ShowCollectedItems();
             }
@@ -259,10 +260,11 @@ public class Control {
     }
 
     public static void DropItem(String name) {
-
         int index = 0;
         for (Item i : Inventory.MyInventory()) {
             if (i.Name.equalsIgnoreCase(name)) {
+
+
                 if (Wonderland.CurrentLocation == Location.SafeRoom) {
                     if (Location.SafeRoom.Items.size() == 1) Location.SafeRoom.Items.remove(0);
                     Location.SafeRoom.Items.add(i);
