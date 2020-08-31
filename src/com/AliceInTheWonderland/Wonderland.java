@@ -3,11 +3,10 @@ package com.AliceInTheWonderland;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.awt.*;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 // Plot is influenced by who is met first between the Gardeners and the Rabbit, determining who will help you
 enum Plot {
@@ -43,7 +42,6 @@ public class Wonderland {
 
     public static Location CurrentLocation;
 
-    public static int Plot = 1;
 
     public static void main(String[] args) {
         Wonderland GameSession = new Wonderland();
